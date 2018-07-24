@@ -1,0 +1,38 @@
+<div class="jumbotron">
+<mat-progress-bar mode="indeterminate" *ngIf="loading" style="position:relative; z-index:100; max-width:78vw;"></mat-progress-bar>
+     <form>
+	     <div class="form-group">
+	        <mat-form-field>
+	    			<input matInput placeholder="Item #" value=""  #input></mat-form-field>
+					<button type="button" style="margin-top: 0.5rem; margin-bottom: 0.5rem;" class="btn btn-primary small_font" [disabled] ="" (click)="query()">
+            <span>Search</span>
+          </button>
+	  		</div>
+     </form>
+     <mat-table [dataSource]="dataSource" style="resize: vertical; overflow: auto;"
+matSort matSortActive="trans_no" matSortDirection="asc" matSortDisableClear #panel>
+    <ng-container matColumnDef="store_code">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Description</mat-header-cell>
+        <mat-cell *matCellDef="let data">{{data.store_code}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="on_hand_qty">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>On Hand Qty</mat-header-cell>
+        <mat-cell *matCellDef="let data">{{data.on_hand_qty}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="open_so_qty">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Open SO Qty</mat-header-cell>
+        <mat-cell *matCellDef="let data">{{data.open_so_qty}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="available_qty">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Available Qty</mat-header-cell>
+        <mat-cell *matCellDef="let data">{{data.available_qty}}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns" ></mat-row>
+
+</mat-table>
+          <mat-paginator [length]="dataSource.count?dataSource.count:1" [pageSize]="50"
+                   [pageSizeOptions]="[10, 25, 50, 100, dataSource.count?dataSource.count:0]">
+           </mat-paginator>
+</div>

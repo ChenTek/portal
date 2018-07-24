@@ -1,0 +1,60 @@
+
+
+
+
+.mat-column-type_code {
+//	  flex: 0 0 5%;
+	margin: 5px;
+
+	}
+.mat-column-ext_ref_no {
+//	  flex: 0 0 15%;
+	margin: 5px;
+
+	}
+.mat-column-trans_no {
+//	  flex: 0 0 10%;
+	margin: 5px;
+
+	}
+.mat-column-ext_ref_date {
+//	  flex: 0 0 7.5%;
+	margin: 5px;
+
+	}
+.mat-column-net_amt {
+margin: 5px;
+
+//	  flex: 0 0 7.5%;
+	}
+.mat-column-order_status {
+	margin: 5px;
+
+//	  flex: 0 0 10%;
+	}
+.mat-column-artwork_status {
+	margin: 5px;
+
+//	  flex: 0 0 12.5%;
+	}
+.mat-column-payment_status {
+	margin: 5px;
+
+	//  flex: 0 0 10%;
+	}
+.mat-column-shipping_status {
+	margin: 5px;
+
+	//  flex: 0 0 12.5%;
+	}
+.mat-column-ship_qty {
+	margin: 5px;
+
+	//  flex: 0 0 5%;
+	}
+.mat-column-estimated_ship_date {
+	margin: 5px;
+
+	//  flex: 0 0 5%;
+	}
+

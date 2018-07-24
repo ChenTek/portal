@@ -1,0 +1,286 @@
+
+<div id="close-container" class="fadeIn jumbotron"
+	style="margin-top: 15px;">
+	<div>
+		<button id="x" (click)="closeThis()" type="button"
+			class="btn btn-default">
+			<i></i> <span>X</span>
+		</button>
+	</div>
+	<div *ngIf="showAlert" style="margin-top: 20px;">
+		<ngb-alert (close)="showAlert = false">
+		<p align="center">
+			<b>PLEASE REVIEW CAREFULLY:</b><br> If any changes/problems
+			occur it is required to notify the company as soon as possible.
+		</p>
+		<p align="center" style="font-size: 1.3rem;">
+			Any delays in art approval will affect the shipping date.<br>Production
+			time is 3 business days from approval. Approximate shipping date is
+			indicated below.<br>Expedited shipping is available with an
+			extra charge. Tekweld cannot be held responsible for in hands date
+			not met if the above is not noted.<br>Paper proofs are to be
+			approved within 24 hours in order to keep the shipping date
+			unaffected.
+		</p>
+		</ngb-alert>
+	</div>
+
+	<div class="row div-section">
+		<div class="col-md-11 col-md-offset-1">
+
+			<div class="btn-with-icon">
+				<button type="button"
+					style="margin-top: 0.5rem; margin-bottom: 0.5rem;"
+					class="btn btn-primary small_font">
+					<i class="fa fa-list fas fa-eye"></i> <span>View eProof</span>
+				</button>
+				<button type="button"
+					style="margin-top: 0.5rem; margin-bottom: 0.5rem;"
+					class="btn btn-primary small_font">
+					<i class="fa fas fa-dollar"></i> <span>Payment Information</span>
+				</button>
+				<button type="button"
+					style="margin-top: 0.5rem; margin-bottom: 0.5rem;"
+					class="btn btn-primary small_font">
+					<i class="fa far fa-sticky-note"></i> <span>Customer Message
+						on Packing List</span>
+				</button>
+				<button type="button"
+					style="margin-top: 0.5rem; margin-bottom: 0.5rem;"
+					class="btn btn-primary small_font">
+					<i class="fa fas fa-at"></i> <span>Update Emails</span>
+				</button>
+				<button type="button"
+					style="margin-top: 0.5rem; margin-bottom: 0.5rem;"
+					class="btn btn-primary small_font" (click)="getCustomerPO()">
+					<i class="fa far fa-address-card"></i> <span>View Customer
+						PO</span>
+				</button>
+				<button type="button"
+					style="margin-top: 0.5rem; margin-bottom: 0.5rem;"
+					class="btn btn-primary small_font" (click)="getOrderImage()">
+					<i class="fa far fa-image"></i> <span>View Order Image</span>
+				</button>
+				<button type="button"
+					style="margin-top: 0.5rem; margin-bottom: 0.5rem;"
+					class="btn btn-primary small_font" (click)="getInvoice()">
+					<i class="fa far fa-file"></i> <span>View Invoice</span>
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<div class="row div-section"
+		style="padding: 0.2rem !important; min-height: 20px;">
+		<div class="col-md-4 small_note">
+			<b>Payment:</b> {{selection[0].payment_status}}
+		</div>
+		<div class="col-md-4 small_note">
+			<b>Acknowledgement:</b> {{selection[0].acknowledgment_status}}
+		</div>
+		<div class="col-md-4 small_note">
+			<b>Art/Proof:</b> {{selection[0].artwork_status}}
+		</div>
+	</div>
+	<div class="row div-section"
+		style="background: transparent !important; padding: 0rem !important;">
+		<div class="div-section col-md-4 small_font"
+			style="background: transparent !important; margin: 0rem !important">
+			<b>TEKWELD</b><br> 45 Rabro Drive, Hauppauge NY, 11788<br>
+			Toll Free: (631) 694-5503<br> <a href="http://www.tekweld.com">www.tekweld.com</a>
+		</div>
+		<div class="div-section col-md-4"
+			style="background: transparent !important; margin: 0rem !important; padding: 0rem !important; height: 0px !important;">
+		</div>
+		<div class="div-section col-md-4 small_font"
+			style="background: transparent !important; margin: 0rem !important;">
+			<b>Order #:</b> {{selection[0].trans_no}} <br> <b>PO #:</b>
+			{{selection[0].ext_ref_no}} <br> <b>Order Date:</b>
+			{{selection[0].ext_ref_date}} <br> <b>Approx Ship Date:</b>
+			{{selection[0].estimated_ship_date}} <br>
+		</div>
+	</div>
+
+	<div class="row div-section"
+		style="background: transparent !important; padding: 0rem !important;">
+		<div class="div-section col-md-4 small_font"
+			style="margin: 0rem !important;">
+			<div
+				style="border-radius: 10px; background: #cfcfcf; padding-left: 0.5rem">
+				<b>Billing Address:</b>
+			</div>
+			<div class="small_font"
+				style="padding-left: 0.5rem; margin-top: 0.5rem">
+				{{selection[0].bill_name}}<br> {{selection[0].bill_address1}}<br>
+				{{selection[0].bill_city}}, {{selection[0].bill_state}},
+				{{selection[0].bill_country}}, {{selection[0].bill_zip}}
+			</div>
+		</div>
+		<div class="div-section col-md-4"
+			style="background: transparent !important; margin: 0rem !important; padding: 0rem !important; height: 0px !important;">
+		</div>
+
+		<div class="div-section col-md-4 small_font"
+			style="margin: 0rem !important;">
+			<div
+				style="border-radius: 10px; background: #cfcfcf; padding-left: 0.5rem">
+				<b>Shipping Address:</b>
+			</div>
+			<div class="small_font"
+				style="padding-left: 0.5rem; margin-top: 0.5rem">
+				<b>Status:</b><br> <a (click)="getShippingAdress()">View Shipping
+					Address</a> <br> <a href="">Email Customer on Shipping</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="row div-section"
+		style="padding: 0rem !important; padding-right: 0rem !important;">
+		<div class="div-section col-md-3 small_font"
+			style="margin: 0rem !important;">
+			<div
+				style="border-radius: 10px; background: #cfcfcf; padding-left: 0.5rem;">
+				<b>Order #</b>
+			</div>
+			<div style="padding: 0.3rem">{{selection[0].trans_no}}</div>
+		</div>
+		<div class="div-section col-md-3 small_font"
+			style="margin: 0rem !important;">
+			<div
+				style="border-radius: 10px; background: #cfcfcf; padding-left: 0.5rem">
+				<b>Customer #</b>
+			</div>
+			<div style="padding: 0.3rem">{{selection[0].type_code}}</div>
+		</div>
+		<div class="div-section col-md-3 small_font"
+			style="margin: 0rem !important;">
+			<div
+				style="border-radius: 10px; background: #cfcfcf; padding-left: 0.5rem">
+				<b>Sales Rep</b>
+			</div>
+			<div style="padding: 0.3rem">{{selection[0].salesperson_code}}</div>
+		</div>
+		<div class="div-section col-md-3 small_font"
+			style="margin: 0rem !important;">
+			<div
+				style="border-radius: 10px; background: #cfcfcf; padding-left: 0.5rem">
+				<b>Payment Term</b>
+			</div>
+			<div style="padding: 0.3rem">{{selection[0].term_code!=''?selection[0].term_code:'No
+				Data'}}</div>
+		</div>
+	</div>
+
+	<div class="row div-section"
+		style="padding: 0rem !important; padding-right: 0rem !important;">
+		<mat-progress-bar mode="indeterminate" *ngIf="loading"
+			style="position:absolute; z-index:100; max-width:78vw;"></mat-progress-bar>
+
+		<div class="div-section col-md-2 small_font"
+			style="margin: 0rem !important;">
+			<div
+				style="border-radius: 10px; background: #cfcfcf; padding-left: 0.5rem">
+				<b>Ordered</b>
+			</div>
+			<div style="padding: 0.3rem">{{orderDetails!=null?orderDetails[0].item_qty:'No
+				Data'}}</div>
+		</div>
+		<div class="div-section col-md-2 small_font"
+			style="margin: 0rem !important;">
+			<div
+				style="border-radius: 10px; background: #cfcfcf; padding-left: 0.5rem">
+				<b>Item</b>
+			</div>
+			<div style="padding: 0.3rem">{{orderDetails!=null?orderDetails[0].catalog_item_code:'No
+				Data'}}</div>
+		</div>
+		<div class="div-section col-md-4 small_font"
+			style="margin: 0rem !important;">
+			<div
+				style="border-radius: 10px; background: #cfcfcf; padding-left: 0.5rem">
+				<b>Description</b>
+			</div>
+			<div style="padding: 0.3rem">
+				<div>{{orderDetails!=null?orderDetails[0].item_description:'No
+					Data'}}</div>
+
+				<div style="margin-top: 5px; vertical-align: middle;"
+					*ngIf="orderDetails">
+					<div class="row"
+						style="padding-top: 10px; margin: 5px; border: 1px solid #dcdcdc; vertical-align: middle; border-radius: 10px;"
+						*ngFor="let attribute of orderDetails[0].attributes">
+						<div class="col-md-6">
+							<mat-form-field> <mat-select
+								[(ngModel)]="attribute.selected_attribute_value_code"
+								placeholder="{{attribute.catalog_attribute_code}}">
+							<mat-option *ngIf="attribute.selected_attribute_value_code!=''"
+								value="{{null}}"> </mat-option> <mat-option
+								*ngFor="let attribute_values of attribute.attribute_values"
+								value="{{attribute_values.catalog_attribute_value_code}}">
+							{{attribute_values.catalog_attribute_value_code}} </mat-option> </mat-select> </mat-form-field>
+
+						</div>
+						<div class="col-md-6">
+							{{attribute.selected_attribute_remarks}}</div>
+					</div>
+				</div>
+				<button type="button"
+					style="margin-top: 0.5rem; margin-bottom: 0.5rem;"
+					class="btn btn-primary small_font">
+					<span>Update</span>
+				</button>
+			</div>
+		</div>
+		<div class="div-section col-md-2 small_font"
+			style="margin: 0rem !important;">
+			<div
+				style="border-radius: 10px; background: #cfcfcf; padding-left: 0.5rem">
+				<b>Unit Price</b>
+			</div>
+			<div style="padding: 0.3rem">{{orderDetails!=null?orderDetails[0].item_price:'No
+				Data'}}</div>
+		</div>
+		<div class="div-section col-md-2 small_font"
+			style="margin: 0rem !important;">
+			<div
+				style="border-radius: 10px; background: #cfcfcf; padding-left: 0.5rem">
+				<b>Ext Price</b>
+			</div>
+			<div style="padding: 0.3rem">{{orderDetails!=null?orderDetails[0].item_price
+				* orderDetails[0].item_qty:'No Data'}}</div>
+		</div>
+	</div>
+
+	<div class="row div-section"
+		style="background: transparent !important; padding: 0rem !important;">
+		<div class="div-section col-md-10 small_font"
+			style="background: transparent !important; margin: 0rem !important">
+			<div class="btn-with-icon">
+				<button type="button"
+					style="margin-top: 0.5rem; margin-bottom: 0.5rem;"
+					class="btn btn-primary small_font" (click)="getCustomerPO()">
+					<i class="fa far fa-address-card"></i> <span>View Customer
+						PO</span>
+				</button>
+				<button type="button"
+					style="margin-top: 0.5rem; margin-bottom: 0.5rem;"
+					class="btn btn-primary small_font" (click)="getOrderImage()">
+					<i class="fa far fa-image"></i> <span>View Order Image</span>
+				</button>
+				<button type="button"
+					style="margin-top: 0.5rem; margin-bottom: 0.5rem;"
+					class="btn btn-primary small_font" (click)="getInvoice()">
+					<i class="fa far fa-file"></i> <span>View Invoice</span>
+				</button>
+			</div>
+		</div>
+
+		<div class="div-section col-md-2 small_font"
+			style="margin: 0rem !important;">
+			<b>Ship Amt:</b> {{selection[0].ship_amt}} <br> <b>Other
+				Amt:</b> {{selection[0].other_amt}} <br> <b>Total:</b>
+			{{ConvertString(selection[0].ship_amt) +
+			ConvertString(selection[0].other_amt)}} <br>
+		</div>
+	</div>
+</div>

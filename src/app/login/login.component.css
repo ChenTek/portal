@@ -1,0 +1,25 @@
+.vertical-center {
+  background-color: transparent;
+  align-items: center;
+  padding: 15%;
+ // padding-bottom: 80%;
+  margin: 0 auto;
+  width: 100%;
+  color: black;
+  top: 0%;
+  text-align: center;
+}
+
+
+
+.cross-image {
+  background-image: url("/../assets/images/tekweld_paint.png");
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  background-position: top;
+  background-repeat: repeat-x;
+  position:fixed;
+ top:0px;
+}
+	

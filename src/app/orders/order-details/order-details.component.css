@@ -1,0 +1,51 @@
+
+	nb-card-body {
+		  div:not(:last-child) {
+		    margin-bottom: 1rem;
+		  }
+		}
+
+		.btn-with-icon {
+		  width: 100%;
+
+		  .btn {
+		    width: 100%;
+		  }
+		 
+		}
+
+		.btn-group:not(:last-child) {
+		  margin-bottom: 1rem;
+		}
+
+		.icon-button {
+		  display: flex;
+		  justify-content: flex-start;
+
+		  button {
+		    margin-right: 2rem;
+		    min-width: 4rem;
+		  }
+		}
+
+		.icon-button:not(:last-child) {
+		  margin-bottom: 1rem;
+		}
+		.mat-spinner{
+			width: 50px !important;
+			height: 50px !important;
+		}
+		
+		
+.mini-table-td {
+	padding: 0px 5px 0px 5px; 
+	margin: 0px 5px 0px 5px; 
+
+}
+
+:host /deep/ .mat-form-field-placeholder {
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+
+

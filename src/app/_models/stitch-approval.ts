@@ -1,0 +1,31 @@
+export class StitchApproval {
+  id: number;
+  artwork_version: string;
+  ext_ref_no: string;
+  trans_type: string;
+  trans_date: string;
+  customer_id: string;
+  customer_code: string;
+  component_path: string;
+  order_id: string;
+  workflow_location: string;
+  payment_status: string;
+  rushorder_flag: string;
+  artwork_status: string;
+  order_status: string;
+  trans_no: string;
+  sub_ref_type: string;
+  digitizing_vendor_code: string;
+  remarks: string;
+  serial_no: string;
+  logo_name: string;
+  catalog_item_code: string;
+  artwork_file_name: string;
+  stitch_count: string;
+  indigo_code: string;
+  item_description: string;
+  item_qty: string;
+  ship_date: string;
+  order_flagged: string;
+  total_rs: number;
+}

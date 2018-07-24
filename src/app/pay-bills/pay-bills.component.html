@@ -1,0 +1,103 @@
+	<mat-accordion style="margin: 0px 0px 0px 0px; padding: 0px; ">
+  <mat-expansion-panel style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; " 
+  					   [expanded]="true"
+  					   (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+    <mat-expansion-panel-header style="max-height: 35px !important; padding-top: 20px; padding-bottom: 10px;"  matTooltip="Expand / Collapse" >
+      <mat-panel-title>
+     <h4 style="font-family: Trebuchet MS;"> Pay Bills </h4>
+
+      </mat-panel-title>
+      <mat-panel-description>
+      <div style="margin: 5px;">
+<h4 ><span style="font-family: Trebuchet MS;"><b>Amount:</b> {{selectionSum() | currency}}</span></h4></div> 
+			<div style="overflow: hidden; "><button type="button"
+					style="margin-top: 0.5rem; margin-bottom: 0.5rem;"
+					class="btn btn-primary small_font">
+					 <span>Make Payment</span>
+				</button><br><br></div>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+
+
+<mat-progress-bar mode="indeterminate" *ngIf="dataSource.loading$ | async" style="position: absolute; z-index: 99999; max-width: 79vw;"></mat-progress-bar>
+
+<mat-table [dataSource]="dataSource" style="resize: vertical; overflow: auto;"
+matSort matSortActive="trans_no" matSortDirection="asc" matSortDisableClear #panel>
+    <ng-container matColumnDef="Select">
+        <mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? masterToggle() : null"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()">
+      </mat-checkbox></mat-header-cell>
+        <mat-cell *matCellDef="let data; let i = index">
+<mat-checkbox (click)="$event.stopPropagation();"
+
+                    (change)="$event ? selection.toggle(data) : null"
+                    [checked]="selection.isSelected(data)">
+      </mat-checkbox>
+</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="customer_code">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Customer #</mat-header-cell>
+        <mat-cell *matCellDef="let data">{{data.customer_code}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="trans_no">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Invoice #</mat-header-cell>
+        <mat-cell *matCellDef="let data">{{data.trans_no}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="ref_trans_no">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Order #</mat-header-cell>
+        <mat-cell *matCellDef="let data">{{data.ref_trans_no}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="trans_date">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Invoice Date</mat-header-cell>
+        <mat-cell *matCellDef="let data">{{data.trans_date | date: 'MM/dd/yyyy'}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="net_amt">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Invoice Amt</mat-header-cell>
+        <mat-cell *matCellDef="let data">{{data.net_amt}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="paid_amt">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Paid Amt</mat-header-cell>
+        <mat-cell *matCellDef="let data">{{data.paid_amt}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="balance_amt">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Balance Amt</mat-header-cell>
+        <mat-cell *matCellDef="let data">{{data.balance_amt}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="ship_date">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Ship Date</mat-header-cell>
+        <mat-cell *matCellDef="let data">{{data.ship_date | date: 'MM/dd/yyyy'}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="ext_ref_date">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Shipping #</mat-header-cell>
+        <mat-cell *matCellDef="let data">{{data.ext_ref_date | date: 'MM/dd/yyyy'}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="ext_ref_no">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Customer PO#</mat-header-cell>
+        <mat-cell *matCellDef="let data">{{data.ext_ref_no}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="tracking_no">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Tracking #</mat-header-cell>
+        <mat-cell *matCellDef="let data">{{data.tracking_no}}</mat-cell>
+    </ng-container>
+    
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row (click)="selection.toggle(row)" *matRowDef="let row; columns: displayedColumns" [ngClass]="{'highlight': selectedRowIndex == row.id}"></mat-row>
+
+</mat-table>
+          <mat-paginator [length]="dataSource.count?dataSource.count:1" [pageSize]="50"
+                   [pageSizeOptions]="[10, 25, 50, 100, dataSource.count?dataSource.count:0]"></mat-paginator>
+  </mat-expansion-panel>
+  </mat-accordion>
+  <div *ngIf="dataSource.count==0" style="margin-top: 20px;">
+		<ngb-alert>
+		<p align="center">
+			<b>No Data</b>
+		</p>
+		</ngb-alert>
+	</div>
+	
+	 

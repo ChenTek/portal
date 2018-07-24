@@ -1,0 +1,130 @@
+<div mat-dialog-content>
+<mat-progress-bar mode="indeterminate" *ngIf="loading" style="position:relative; z-index:100; max-width:78vw;"></mat-progress-bar>
+<p>Ship to:</p>
+     <form>
+	     <div class="form-group">
+	     	<div class="col-md-6">
+	        <mat-form-field>
+	    			<input matInput placeholder="Name" value="{{info.ship_name}}">
+	  		</mat-form-field>
+	  		</div>
+	     </div>
+
+       <div class="form-group">
+       <div class="col-md-6">
+        <mat-form-field>
+    			<input matInput placeholder="Address line 1" value="{{info.ship_address1}}">  
+  		</mat-form-field>
+  		</div>
+  		</div>
+  		<div class="col-md-6">
+  		<div class="form-group">
+  		<mat-form-field>
+    			<input matInput placeholder="Address line 2" value="{{info.ship_address2}}">  
+  		</mat-form-field>
+  		</div>
+       </div>
+       <div class="form-group">
+       <div class="col-md-4">
+        <mat-form-field>
+    			<input matInput placeholder="City" value="{{info.ship_city}}"> 
+  		</mat-form-field>
+  		</div>
+  		<div class="col-md-4">
+  		<mat-form-field>
+	    				      <mat-select
+								placeholder="State">
+							 <mat-option
+								*ngFor="let state of states"
+								value="{{state}}">
+							{{state.abbreviation}} </mat-option> 
+							</mat-select>
+  		</mat-form-field>
+  		</div>
+  		<div class="col-md-4">
+  		<mat-form-field>
+    			<input matInput placeholder="Zip" value="{{info.ship_zip}}"> 
+  		</mat-form-field>
+  		</div>
+       </div>
+       <div class="form-group">
+       <div class="col-md-6">
+        <mat-form-field>
+    			<mat-select
+								 placeholder="Country">
+							 <mat-option
+								*ngFor="let country of countries"
+								value="{{country}}">
+							{{country}} </mat-option> 
+							</mat-select>
+  		</mat-form-field>
+  		</div>
+       </div>
+       <div class="form-group">
+       <div class="col-md-12">
+		  <mat-form-field>
+		    <textarea matInput placeholder="Attention">{{info.attention}}</textarea> 
+		  </mat-form-field>
+		  </div>
+       </div>
+       <div class="form-group">
+       <div class="col-md-6">
+        <mat-form-field>
+		  <input matInput [matDatepicker]="picker" (click)="picker.open()" placeholder="Req Ship Date" value="{{info.shipping_date}}"> 
+		  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+		  <mat-datepicker #picker></mat-datepicker>
+		</mat-form-field>
+		</div>
+       <div class="col-md-6">
+        <mat-form-field>
+		  <input matInput [matDatepicker]="picker2" (click)="picker2.open()" placeholder="Est Ship Date" disabled value="{{info.estimated_ship_date}}"> 
+		  <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+		  <mat-datepicker #picker2></mat-datepicker>
+		</mat-form-field>
+		</div>
+       </div>
+              <div class="form-group">
+       <div class="col-md-6">
+        <mat-form-field>
+		  <input matInput [matDatepicker]="picker3" (click)="picker3.open()" placeholder="Req InHand Ship Date" value="{{info.inhand_date}}"> 
+		  <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+		  <mat-datepicker #picker3></mat-datepicker>
+		</mat-form-field>
+		</div>
+       <div class="col-md-6">
+        <mat-form-field>
+		  <input matInput [matDatepicker]="picker4" (click)="picker4.open()" placeholder="Est InHand Ship Date" disabled value="ask india">
+		  <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+		  <mat-datepicker #picker4></mat-datepicker>
+		</mat-form-field>
+		</div>
+       </div>
+       <div class="form-group">
+       <div class="col-md-6">
+        <mat-form-field>
+    			<input matInput placeholder="Shipping Code" value=" {{info.shipping_code}}">
+  		</mat-form-field>
+  		</div>
+  		<div class="col-md-6">
+  		<mat-form-field>
+    			<input matInput placeholder="Shipping Method" value="{{info.ship_method_code}}"> 
+  		</mat-form-field>
+  		</div>
+       </div>
+       <div class="form-group">
+       <div class="col-md-6">
+        <mat-form-field>
+    			<input matInput placeholder="Shipping Amt"> {{info.clear_ship_amt}}
+  		</mat-form-field>
+  		</div>
+       </div>
+     </form>
+</div>
+<div mat-dialog-actions>
+          <button type="button" style="margin-top: 0.5rem; margin-bottom: 0.5rem;" class="btn btn-primary small_font"  [mat-dialog-close]="">
+            <span>Cancel</span>
+          </button>
+                    <button type="button" style="margin-top: 0.5rem; margin-bottom: 0.5rem;" class="btn btn-primary small_font" (click)="saveToDB()" [disabled] ="!verification">
+            <span>Confirm</span>
+          </button>
+</div>

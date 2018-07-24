@@ -1,0 +1,16 @@
+<mat-accordion style="margin: 0px 0px 0px 0px; padding: 0px; ">
+  <mat-expansion-panel style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; margin: 0px 0px 0px 0px; padding: 0px; " 
+  					   [expanded]="true"
+  					   (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+    <mat-expansion-panel-header style="max-height: 35px !important; padding-top: 20px; padding-bottom: 10px;"  matTooltip="Expand / Collapse" >
+      <mat-panel-title>
+     <h4 style="font-family: Trebuchet MS;"> Ship Estimate</h4>
+
+      </mat-panel-title>
+      <mat-panel-description>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+<app-ship-estimate-widget></app-ship-estimate-widget>
+</mat-expansion-panel>
+</mat-accordion>

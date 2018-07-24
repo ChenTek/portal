@@ -1,0 +1,86 @@
+<mat-accordion style="margin: 0px 0px 0px 0px; padding: 0px; ">
+  <mat-expansion-panel style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; " 
+  					   [expanded]="true"
+  					   (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+    <mat-expansion-panel-header style="max-height: 35px !important; padding-top: 20px; padding-bottom: 10px;"  matTooltip="Expand / Collapse" >
+      <mat-panel-title>
+     <h4 style="font-family: Trebuchet MS;"> Stitch Approval </h4>
+
+      </mat-panel-title>
+      <mat-panel-description>
+			<ul><li><h4 ><span style="font-family: Trebuchet MS;"><b>Selected:</b> {{selected.length?selected[0].trans_no:'None'}}</span></h4></li></ul>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+            <mat-panel-description>   
+         <p>
+      <mat-input-container style="max-height: 20px !important;">
+        <input matInput placeholder="Search..."  matTooltip="Search" #input> 
+    </mat-input-container>
+<!-- content here -->
+</p></mat-panel-description>
+<mat-progress-bar mode="indeterminate" *ngIf="dataSource.loading$ | async" style="position: absolute; z-index: 99999; max-width: 79vw;"></mat-progress-bar>
+
+<mat-table [dataSource]="dataSource" style="resize: vertical; overflow: auto;"
+matSort matSortActive="trans_no" matSortDirection="asc" matSortDisableClear scrollTracker (trigger)="loadMore($event)" [ngClass]="selected.length ? 'small_height' : ' full_height;'" #panel>
+
+    <ng-container matColumnDef="customer_code">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Customer #</mat-header-cell>
+        <mat-cell *matCellDef="let data">{{data.customer_code}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="stitch_count">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Stitch Count</mat-header-cell>
+        <mat-cell *matCellDef="let data">{{data.stitch_count}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="trans_type">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Order Type</mat-header-cell>
+        <mat-cell *matCellDef="let data">{{data.trans_type}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="ext_ref_no">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Customer PO</mat-header-cell>
+        <mat-cell *matCellDef="let data">{{data.ext_ref_no}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="trans_no">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Order #</mat-header-cell>
+        <mat-cell *matCellDef="let data">{{data.trans_no}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="trans_date">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Order Date</mat-header-cell>
+        <mat-cell *matCellDef="let data">{{data.trans_date}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="item_description">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Item #</mat-header-cell>
+        <mat-cell *matCellDef="let data">{{data.item_description}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="item_qty">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Item Qty</mat-header-cell>
+        <mat-cell *matCellDef="let data">{{data.item_qty}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="ship_date">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Ship Date</mat-header-cell>
+        <mat-cell *matCellDef="let data">{{data.ship_date}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="order_status">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Order Status</mat-header-cell>
+        <mat-cell *matCellDef="let data">{{data.order_status}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="payment_status">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Payment Status</mat-header-cell>
+        <mat-cell *matCellDef="let data">{{data.payment_status}}</mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns" [ngClass]="{'highlight': selectedRowIndex == row.id}"
+         (click)="highlight(row)" ></mat-row>
+
+</mat-table>
+          <mat-paginator [length]="dataSource.count?dataSource.count:1" [pageSize]="50"
+                   [pageSizeOptions]="[10, 25, 50, 100, dataSource.count?dataSource.count:0]"></mat-paginator>
+  </mat-expansion-panel>
+  </mat-accordion>
+  <div *ngIf="dataSource.count==0" style="margin-top: 20px;">
+		<ngb-alert>
+		<p align="center">
+			<b>No Stitch Approvals</b>
+		</p>
+		</ngb-alert>
+	</div>

@@ -1,0 +1,8 @@
+
+	.mat-table {
+		max-height: 78vh
+		}
+
+	.mat-paginator-page-size-label{
+			background: red !important;
+	}

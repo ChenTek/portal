@@ -1,0 +1,16 @@
+<div id="content">{{data.message}}</div>
+<div id="docdiv"></div>
+<div  style="max-height: 80vh" *ngIf="caller==2">
+	<div>
+		<label>PDF src</label> <input type="text" placeholder="PDF src"
+			[(ngModel)]="pdfSrc">
+	</div>
+	<pdf-viewer [src]="pdfSrc" [render-text]="true" style="display: block;"></pdf-viewer>
+</div>
+
+<p (click)="onNoClick()"
+	style="text-align: right; padding: 0px; margin: 0px;">
+	<a>Close</a>
+</p>
+
+

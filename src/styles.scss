@@ -1,0 +1,489 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@swimlane/ngx-datatable/release/index.css';
+@import '~@swimlane/ngx-datatable/release/themes/material_edited.css';
+@import '~@swimlane/ngx-datatable/release/assets/icons.css';
+
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+html *
+{
+   font-family: Helvetica;
+}
+
+/*Buttons*/
+
+a.btn:hover,
+button:hover {
+	opacity: 0.8;
+}
+
+a.btn:active,
+button:active {
+	box-shadow: inset 0px 0px 500px rgba(0,0,0,.1);
+	opacity: 1;
+}
+
+.btn-default,
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active,
+.btn-default.active,
+.open > .dropdown-toggle.btn-default,
+.btn-default.disabled,
+.btn-default[disabled],
+fieldset[disabled] .btn-default,
+.btn-default.disabled:hover,
+.btn-default[disabled]:hover,
+fieldset[disabled] .btn-default:hover,
+.btn-default.disabled:focus,
+.btn-default[disabled]:focus,
+fieldset[disabled] .btn-default:focus,
+.btn-default.disabled:active,
+.btn-default[disabled]:active,
+fieldset[disabled] .btn-default:active,
+.btn-default.disabled.active,
+.btn-default[disabled].active,
+fieldset[disabled] .btn-default.active {
+	background-color: #e9ecf2;
+	border-color: #e9ecf2;
+	color: #1b3548;
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary,
+.btn-primary.disabled,
+.btn-primary[disabled],
+fieldset[disabled] .btn-primary,
+.btn-primary.disabled:hover,
+.btn-primary[disabled]:hover,
+fieldset[disabled] .btn-primary:hover,
+.btn-primary.disabled:focus,
+.btn-primary[disabled]:focus,
+fieldset[disabled] .btn-primary:focus,
+.btn-primary.disabled:active,
+.btn-primary[disabled]:active,
+fieldset[disabled] .btn-primary:active,
+.btn-primary.disabled.active,
+.btn-primary[disabled].active,
+fieldset[disabled] .btn-primary.active {
+	background-color: #30a5ff;
+	border-color: #30a5ff;
+}
+
+.btn-success,
+.btn-success:hover,
+.btn-success:focus,
+.btn-success:active,
+.btn-success.active,
+.open > .dropdown-toggle.btn-success,
+.btn-success.disabled,
+.btn-success[disabled],
+fieldset[disabled] .btn-success,
+.btn-success.disabled:hover,
+.btn-success[disabled]:hover,
+fieldset[disabled] .btn-success:hover,
+.btn-success.disabled:focus,
+.btn-success[disabled]:focus,
+fieldset[disabled] .btn-success:focus,
+.btn-success.disabled:active,
+.btn-success[disabled]:active,
+fieldset[disabled] .btn-success:active,
+.btn-success.disabled.active,
+.btn-success[disabled].active,
+fieldset[disabled] .btn-success.active {
+	background-color: #8ad919;
+	border-color: #8ad919;
+}
+
+.btn-warning,
+.btn-warning:hover,
+.btn-warning:focus,
+.btn-warning:active,
+.btn-warning.active,
+.open > .dropdown-toggle.btn-warning,
+.btn-warning.disabled,
+.btn-warning[disabled],
+fieldset[disabled] .btn-warning,
+.btn-warning.disabled:hover,
+.btn-warning[disabled]:hover,
+fieldset[disabled] .btn-warning:hover,
+.btn-warning.disabled:focus,
+.btn-warning[disabled]:focus,
+fieldset[disabled] .btn-warning:focus,
+.btn-warning.disabled:active,
+.btn-warning[disabled]:active,
+fieldset[disabled] .btn-warning:active,
+.btn-warning.disabled.active,
+.btn-warning[disabled].active,
+fieldset[disabled] .btn-warning.active {
+	background-color: #ffb53e;
+	border-color: #ffb53e;
+}
+
+.btn-danger,
+.btn-danger:hover,
+.btn-danger:focus,
+.btn-danger:active,
+.btn-danger.active,
+.open > .dropdown-toggle.btn-danger,
+.btn-danger.disabled,
+.btn-danger[disabled],
+fieldset[disabled] .btn-danger,
+.btn-danger.disabled:hover,
+.btn-danger[disabled]:hover,
+fieldset[disabled] .btn-danger:hover,
+.btn-danger.disabled:focus,
+.btn-danger[disabled]:focus,
+fieldset[disabled] .btn-danger:focus,
+.btn-danger.disabled:active,
+.btn-danger[disabled]:active,
+fieldset[disabled] .btn-danger:active,
+.btn-danger.disabled.active,
+.btn-danger[disabled].active,
+fieldset[disabled] .btn-danger.active {
+	background-color: #f9243f;
+	border-color: #f9243f;
+}
+
+
+/*Jumbotron*/
+
+.jumbotron {
+	background: #fff;
+	border-bottom: 1px solid #eee;
+	color: #5f6468;
+padding: 1rem;
+box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+border-radius: 10px;
+
+}
+
+.closeButton
+{
+	    float:right;
+	    display:inline-block;
+	    padding:2px 5px;
+}
+.closeButton:hover {
+    float:right;
+    display:inline-block;
+    padding:2px 5px;
+    color:#fff;
+}
+
+
+#close-container {
+	  /*border-radius: 25px;*/
+	  overflow: visible;
+	  position: relative;
+	}
+
+	#x {
+	    position: absolute;
+	    background: red;
+	    color: white;
+	    top: -10px;
+	    right: -10px;
+	}
+	
+.div-section{
+	background: #f0f5f8;
+	margin: 1rem;
+	margin-top: 0rem !important;
+	padding: 1rem;
+	//border: 2px solid #dcdcdc;
+	border-radius: 10px;
+}
+
+.highlight{
+	  background: #30a5ff !important;
+	}
+
+		.small_note{
+		padding: 0px;
+	margin: 0px;
+	text-align: center;
+	font-family: Trebuchet MS;
+	font-size: 1.2rem;
+	}
+	
+	.small_font{
+		font-family: Trebuchet MS;
+		font-size: 1.2rem;
+	}
+
+	
+	
+	.mat-cell {
+	height: 10px !important;
+font-size: 10px !important;
+
+
+white-space: nowrap;
+overflow: hidden;
+flex: 1;
+display: flex;
+align-items: center;
+}
+
+
+.course {
+    text-align: center;
+    margin: 0 auto;
+}
+
+
+
+.description-cell {
+    text-align: left;
+    margin: 10px auto;
+}
+
+.duration-cell {
+}
+
+.duration-cell mat-icon {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 20px;
+}
+
+.spinner-container {
+    height: 100%;
+    width: 100%;
+
+    position: fixed;
+margin-top: 0 0 0 0;
+align-items: center;
+}
+
+.mat-spinner {
+    height: 360px;
+    margin: auto;
+    margin-top: 20vh;
+    width: 360px;
+}
+
+.mat-table {
+	  overflow: auto;
+text-align: center;
+margin-bottom: 0px;
+//z-index: 10000;
+	}
+
+.mat-header-row {
+	  position: sticky;
+	  top: 0;
+	  background: #cfcfcf;
+	  font-weight: bold;
+	  min-height: 20px !important;
+	  border-radius: 5px;
+	  color: black !important;
+	//  z-index: 9998 !important;
+	}
+
+.mat-header-cell {
+	font-weight: bold;
+	font-family: Trebuchet MS;
+	}
+
+.mat-paginator {
+	min-height: 1px !important; //check out the height
+max-height: 1px !important;
+padding: 0px !important;
+margin: 0px !important;
+margin-bottom: 5px !important;
+font-size: 10px;
+visibility: hidden;
+}
+
+.mat-row{
+	min-height: 25px !important;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.mat-row:hover { 
+    background-color: #c9e6fc;
+}
+
+.small_height{
+	transition: max-height 0.5s linear;
+//sw	 height: 20vh !important;
+	 max-height: 25vh !important;
+}
+
+.full_height{
+	transition: max-height 1s linear;
+	 //height: 78vh !important;
+	 max-height: 100vh !important;
+}
+
+mat-row:nth-child(even){
+    background-color: #ffffff;
+    }
+
+mat-row:nth-child(odd){
+    background-color: #f0f5f8;
+    }
+   
+   
+   .sliding-div {
+	animation: 1s ease-out 0s 1 slideInFromAbove;
+	   /* transition the background-color over 1s with a linear animation */
+	}
+   
+   
+   	@keyframes slideInFromAbove {
+	    0% {
+	        transform: translateY(-50%);
+	        opacity: 0;
+	    }
+	    100% {
+	        transform: translateY(0);
+	        opacity: 1;
+	    }
+	}
+
+	   	@keyframes fadeIn {
+	    0% {
+	        opacity: 0;
+	    }
+	    100% {
+	        opacity: 1;
+	    }
+	}
+
+	
+	
+	
+	.mat-dialog-container {
+    display: flex !important;
+    flex-direction: column  !important;
+    border-radius: 10px !important;
+}
+
+.mat-dialog-container > * {
+    display: flex  !important;;
+    flex-direction: column  !important;
+    border-radius: 10px !important;
+}
+
+.mat-dialog-content {
+    max-height: 50vh !important;
+}
+
+.mat-dialog-actions {
+    display: block !important;
+    flex-grow: inherit  !important;;
+    flex-shrink: inherit  !important;;
+    padding: 12px 0 0 !important;
+
+    &:last-child {
+        margin-bottom: 0 !important;
+    }
+}
+a:hover {
+ cursor:pointer;
+}
+
+/* Turn on custom 8px wide scrollbar */
+::-webkit-scrollbar {
+  width: 8px; /* 1px wider than Lion. */
+  /* This is more usable for users trying to click it. */
+  background-color: rgba(0,0,0,0);
+  -webkit-border-radius: 100px;
+}
+/* hover effect for both scrollbar area, and scrollbar 'thumb' */
+::-webkit-scrollbar:hover {
+  background-color: rgba(0, 0, 0, 0.09);
+}
+
+/* The scrollbar 'thumb' ...that marque oval shape in a scrollbar */
+::-webkit-scrollbar-thumb:vertical {
+  /* This is the EXACT color of Mac OS scrollbars. 
+     Yes, I pulled out digital color meter */
+  background: rgba(0,0,0,0.5);
+  -webkit-border-radius: 100px;
+}
+::-webkit-scrollbar-thumb:vertical:active {
+  background: rgba(0,0,0,0.61); /* Some darker color when you click it */
+  -webkit-border-radius: 100px;
+}
+::-webkit-scrollbar {
+  width: 8px; /* 1px wider than Lion. */
+  /* This is more usable for users trying to click it. */
+  background-color: rgba(0,0,0,0);
+  -webkit-border-radius: 100px;
+}
+/* hover effect for both scrollbar area, and scrollbar 'thumb' */
+::-webkit-scrollbar:hover {
+  background-color: rgba(0, 0, 0, 0.09);
+}
+
+/* The scrollbar 'thumb' ...that marque oval shape in a scrollbar */
+::-webkit-scrollbar-thumb:vertical {
+  /* This is the EXACT color of Mac OS scrollbars. 
+     Yes, I pulled out digital color meter */
+  background: rgba(0,0,0,0.5);
+  -webkit-border-radius: 100px;
+}
+::-webkit-scrollbar-thumb:vertical:active {
+  background: rgba(0,0,0,0.61); /* Some darker color when you click it */
+  -webkit-border-radius: 100px;
+}
+
+/*
+  After doing my first post here on Dabblet, I dug into their custom 
+  scrollbar css.
+  
+  here that is, I starred the box-shadow css for the nice pop.
+  
+section.page:not(.focus):not(:hover)::-webkit-scrollbar {
+  display: none;
+}
+::-webkit-scrollbar-track,::-webkit-scrollbar-thumb {
+  border: 5px solid transparent;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-track {
+  ** box-shadow: 1px 1px 5px rgba(0,0,0,.2) inset; **
+}
+::-webkit-scrollbar-thumb {
+  background: url(/img/noise.png);
+  background-clip: content-box;
+  ** box-shadow: 0 0 0 5px hsla(24, 20%, 50%,.4) inset; **
+  min-height: 20px;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+*/
+
+.form-group{
+	width: 100%;
+}
+.mat-checkbox{
+	//margin: auto !important;
+	margin-bottom: 5px !important; //POSITION IN TABLE BASED ON PAYTABLE
+	margin-top: 10px !important;
+//	vertical-align: middle !important;
+	}
+	
+
+.mat-checkbox-inner-container {
+    display: inline-block !important;
+    width: 18px !important;
+    height: 18px !important;
+    line-height: 0 !important;
+    margin: 0px !important;
+    order: 0 !important;
+    position: relative !important;
+    vertical-align: middle !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+}
+

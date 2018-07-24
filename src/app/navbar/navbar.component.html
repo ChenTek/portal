@@ -1,0 +1,148 @@
+<nav *ngIf="isLoggedIn$ | async" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#sidebar-collapse" (click)="toggle()">
+        <span class="sr-only">Toggle navigation</span>
+        <i class="fa {{toggleBarIcon?'fa-bars':'fa-remove'}} text-white custom-nav-toggle"></i> <!--FONT AWESOME -->
+      </button>
+      <a class="navbar-brand" routerLinkActive="active" [routerLink]="['/home']"><span class="logo-font" style="margin-left: 300px">TEKWELD </span></a>
+      <ul class="user-menu">
+        <li class="dropdown pull-right">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+             {{currentUser.fname}} <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#"><i class="fa fa-fw fa-user"></i> Profile</a></li>
+            <li><a href="#"><i class="fa fa-fw fa-cogs"></i> Settings</a></li>
+            <li><a href="#"><i class="fa fa-fw fa-lock"></i> Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div *ngIf="isLoggedIn$ | async" id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+
+<!--  
+  <form role="search">
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Search">
+    </div>
+  </form>-->
+
+  <ul class="nav menu">
+  
+    <li><a routerLinkActive="active" [routerLink]="['/home']"><i class="fa fas fa-home"></i> Home</a></li>
+        <li class="parent ">
+      <a data-toggle="collapse" href="#sub-item-1">
+      
+        <i class="fa far fa-list-alt"></i> Orders
+      </a>
+      <ul class="children collapse" id="sub-item-1">
+        <li>
+          <a routerLinkActive="active" [routerLink]="['/search-order']">
+           <i class="fa fas fa-search"></i> Search Order
+          </a>
+        </li>
+        <li>
+          <a routerLinkActive="active" [routerLink]="['/open-orders']">
+            <i class="fa fa-fw fa-table"></i> Open Orders
+          </a>
+        </li>
+        <li>
+          <a routerLinkActive="active" [routerLink]="['/order-history']">
+            <i class="fa fas fa-history"></i>  Order History
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li><a routerLinkActive="active" [routerLink]="['/pay-bills']"><i class="fa fa-list fa fa-money"></i> Pay Bills</a></li>
+    <li><a routerLinkActive="active" [routerLink]="['/estimates']"><i class="fa fa-list fas fa-calculator"></i> Estimates</a></li>
+    <li><a routerLinkActive="active" [routerLink]="['/missing-artwork']"><i class="fa fa-list fas fa-paint-brush"></i> Missing Art</a></li>
+    <li><a routerLinkActive="active" [routerLink]="['/eproof']"><i class="fa fa-list fas fa-eye"></i> eProof</a></li>
+    <li><a routerLinkActive="active" [routerLink]="['/stitch-approval']"><i class="fa fa-list fab fa-first-order"></i> Stitch Approval</a></li>
+    <li><a routerLinkActive="active" [routerLink]="['/pre-production-approval']"><i class="fa fa-list fas fa-bullseye"></i> Pre-Production Approval</a></li>
+    <li><a routerLinkActive="active" [routerLink]="['/inventory']"><i class="fa fa-list fas fa-clipboard"></i> Check Inventory</a></li>
+    <li><a routerLinkActive="active" [routerLink]="['/ship-estimate']"><i class="fa fa-list fas fa-truck"></i> Ship Estimate</a></li>
+
+
+    <li role="presentation" class="divider"></li>
+    <li><a routerLinkActive="active" [routerLink]="['/login']"><i class="fa fa-user fa-fw"></i> Login</a></li>
+    <li><a routerLinkActive="active" [routerLink]="['/register']"><i class="fa fa-users fa-fw"></i> Register</a></li>
+    <li><a routerLinkActive="active" [routerLink]="['/register']"><i class="fa fa-fw fa-cogs"></i> Settings</a></li>
+    
+
+  </ul>
+  <div class="attribution">Copyrights and Maker
+
+  </div>
+</div>
+
+<!-- <nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand">
+              <img src="assets/img/ngx-bootstrap.svg" class="logo">
+            </a>
+            <span class="navbar-brand">Angular + Bootstrap</span>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="#">
+              Link <span class="sr-only">(current)</span>
+            </a></li>
+            <li><a href="#">Link</a></li>
+            <li class="dropdown" dropdown> <!-- {1} --
+                <a dropdownToggle role="button"> <!-- {2} --
+                  Dropdown <span class="caret"></span></a>
+                <ul *dropdownMenu class="dropdown-menu"> <!-- {3} --
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">Separated link</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">One more separated link</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+THATS THE ONE:
+<nav *ngIf="isLoggedIn$ | async" class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+                <button type="button" 
+                        class="navbar-toggle collapsed"
+                        (click)="toggleState()">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand">Project Manager</a>
+        </div>
+         <div ngbDropdown class="collapse navbar-collapse"
+              [ngClass]="{ 'in': isIn }">
+            <ul class="nav navbar-nav" ngbDropdownToggle>
+                 <li class="dropdown"><a class="dropbtn" data-toggle="dropdown" href="javascript:void(0)">Orders<span class="caret"></span></a>
+              	 	<ul class="dropdown-menu">
+              		<li><a class="nav-link" [routerLink]="['/search-order']">Search Order</a></li>
+              		<li><a class="nav-link" [routerLink]="['/open-orders']">Open Orders</a></li>
+              		<li><a class="nav-link" [routerLink]="['/order-history']">Order History</a></li>
+		            </ul>
+        		 </li>
+        		 <li class="dropdown-item"><a class="nav-link" routerLink="home">Pay Bills</a></li>
+                 <li class="dropdown-item"><a class="nav-link" routerLink="home">Estimates</a></li>
+                 <li class="dropdown-item"><a class="nav-link" [routerLink]="['/missing-artwork']">Missing Artwork</a></li>
+                 <li class="dropdown-item"><a class="nav-link" [routerLink]="['/eproof']">eProof</a></li>
+                 <li class="dropdown-item"><a class="nav-link" routerLink="home">Stitch Approval</a></li>
+                 <li class="dropdown-item"><a class="nav-link" routerLink="home">Pre-Production Approval</a></li>
+                 <li class="dropdown-item"><a class="nav-link" routerLink="home">Check Inventory</a></li>
+                 <li class="dropdown-item"><a class="nav-link" routerLink="home">Ship Estimate</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+-->

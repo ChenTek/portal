@@ -1,0 +1,60 @@
+<h1 mat-dialog-title>Shipping Address</h1>
+<div  *ngIf="!openEdit">
+<div mat-dialog-content style="min-width:300px;">
+<mat-progress-bar mode="indeterminate" *ngIf="loading" style="position:relative; z-index:100; max-width:78vw;"></mat-progress-bar>
+<div  *ngFor="let address of shippingInfo; let i = index" [attr.data-index]="i" class="div-section">
+<div>  <mat-radio-group [(ngModel)]="selectedAddress">
+<mat-radio-button class="example-radio-button" [value]="address"  name="radio">
+   Address #{{i+1}}
+  </mat-radio-button>
+  </mat-radio-group></div>
+    <div class="row div-section" style="padding:0rem !important; padding-right: 0rem !important; ">
+        <div class="div-section col-md-5 small_font" style="margin:0rem !important;">
+        	<div style="border-radius: 10px; background:#cfcfcf; padding:0.5rem"><b>Ship To</b></div>
+        	<div style="padding:0.3rem">{{address.ship_address1}}, {{address.ship_address2}}, {{address.ship_city}}, {{address.ship_state}}, {{address.ship_country}}, {{address.ship_zip}}</div>
+        </div>
+        <div class="div-section col-md-3 small_font" style="margin:0rem !important;">
+        	<div style="border-radius: 10px; background:#cfcfcf; padding:0.5rem"><b>Address Type</b></div>
+        	<div style="padding:0.3rem">{{address.residential_indicator=='N'?'Commercial':'Residential'}}</div>
+        </div>
+        <div class="div-section col-md-2 small_font" style="margin:0rem !important;">
+        	<div style="border-radius: 10px; background:#cfcfcf; padding:0.5rem"><b>Ship Date</b></div>
+        	<div style="padding:0.3rem">{{address.shipping_date}}</div>
+        </div>
+        <div class="div-section col-md-2 small_font" style="margin:0rem !important;">
+        	<div style="border-radius: 10px; background:#cfcfcf; padding:0.5rem"><b>Arrival Date</b></div>
+        	<div style="padding:0.3rem">{{address.estimated_arrival_date}}</div>
+        </div>
+     	</div><div class="row div-section" style="padding:0rem !important; padding-right: 0rem !important;">
+        <div class="div-section col-md-3 small_font" style="margin:0rem !important;">
+        	<div style="border-radius: 10px; background:#cfcfcf; padding:0.5rem"><b>Qty</b></div>
+        	<div style="padding:0.3rem">{{address.clear_qty}}</div>
+        </div>
+        <div class="div-section col-md-3 small_font" style="margin:0rem !important;">
+        	<div style="border-radius: 10px; background:#cfcfcf; padding:0.5rem"><b>Ship Code</b></div>
+        	<div style="padding:0.3rem">{{address.shipping_code}}</div>
+        </div>
+        <div class="div-section col-md-3 small_font" style="margin:0rem !important;">
+        	<div style="border-radius: 10px; background:#cfcfcf; padding:0.5rem"><b>Ship Method</b></div>
+        	<div style="padding:0.3rem">{{address.ship_method}}</div>
+        </div>
+        <div class="div-section col-md-3 small_font" style="margin:0rem !important;">
+        	<div style="border-radius: 10px; background:#cfcfcf; padding:0.5rem"><b>Ship Amt</b></div>
+        	<div style="padding:0.3rem">{{address.current_ship_amt}}</div>
+        </div>
+    </div>
+</div>
+
+</div>
+<div mat-dialog-actions>
+          <button type="button" style="margin-top: 0.5rem; margin-bottom: 0.5rem;" class="btn btn-primary small_font" [mat-dialog-close]="">
+            <span>Close</span>
+          </button>
+                    <button type="button" style="margin-top: 0.5rem; margin-bottom: 0.5rem;" class="btn btn-primary small_font" (click)="edit()"  [disabled] ="!selectedAddress || selectedAddress.shipping_flag == 'Y'">
+            <span>Edit</span>
+          </button>
+          <p *ngIf="selectedAddress && selectedAddress.shipping_flag == 'Y'">Shipping Address Cannot Be Edited After Shipping</p>
+</div>
+
+</div>
+<app-shipping-info-edit [info]="selectedAddress" *ngIf="openEdit"></app-shipping-info-edit>

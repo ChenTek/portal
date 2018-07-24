@@ -1,0 +1,59 @@
+<div class="jumbotron">
+<mat-progress-bar mode="indeterminate" *ngIf="loading" style="position:relative; z-index:100; max-width:78vw;"></mat-progress-bar>
+     <form>
+	     <div class="form-group">
+	        <mat-form-field>
+	    			<input matInput placeholder="Item #" value=""></mat-form-field>
+
+        <mat-form-field>
+    			<input matInput placeholder="Item Qty" value=""></mat-form-field>
+  		</div>
+
+	     <div class="form-group">
+	        <mat-form-field>
+	    				      <mat-select
+								placeholder="State">
+							 <mat-option
+								*ngFor="let state of states"
+								value="{{state}}">
+							{{state.abbreviation}} </mat-option> 
+							</mat-select>
+		</mat-form-field>
+        <mat-form-field>
+    			<input matInput placeholder="Zip" value=""></mat-form-field>
+  		
+        <mat-form-field>
+    			 <mat-select
+								placeholder="Country">
+							 <mat-option
+								*ngFor="let country of countries"
+								value="{{country}}">
+							{{country}} </mat-option> 
+							</mat-select>
+    			</mat-form-field>
+  		</div>
+  		
+	     <div class="form-group">
+	        <mat-form-field>
+	      <mat-select
+								placeholder="Package">
+							 <mat-option
+								*ngFor="let package of packageTypes"
+								value="{{package}}">
+							{{package}} </mat-option> 
+							</mat-select>
+	        </mat-form-field>
+	  		</div>
+     </form>
+<div>
+          <button type="button" style="margin-top: 0.5rem; margin-bottom: 0.5rem;" class="btn btn-primary small_font"  (click) = "getThat()">
+            <span>Revert</span>
+          </button>
+                    <button type="button" style="margin-top: 0.5rem; margin-bottom: 0.5rem;" class="btn btn-primary small_font" [disabled] ="!verification">
+            <span>Confirm</span>
+          </button>
+                              <button type="button" style="margin-top: 0.5rem; margin-bottom: 0.5rem;" class="btn btn-primary small_font" [disabled] ="true">
+            <span>Send to Customer</span>
+          </button>
+</div>
+</div>
