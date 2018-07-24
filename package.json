@@ -1,5 +1,5 @@
 {
-  "name": "angular2-registration-login-example-cli",
+  "name": "tekweld portal",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -24,8 +24,6 @@
     "@angular/router": "5.2.9",
     "@nebular/theme": "^2.0.0-rc.6",
     "@ng-bootstrap/ng-bootstrap": "^1.1.1",
-    "@swimlane/ngx-datatable": "^11.2.0",
-    "@types/datatables.net": "^1.10.9",
     "@types/jquery": "^3.3.1",
     "@types/jspdf": "^1.1.31",
     "angular-bootstrap-md": "^5.2.3",
@@ -33,8 +31,6 @@
     "angular-ui-bootstrap": "^2.5.6",
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
-    "datatables.net": "^1.10.16",
-    "datatables.net-dt": "^1.10.16",
     "font-awesome": "^4.7.0",
     "jquery": "^3.3.1",
     "jspdf": "^1.3.5",
