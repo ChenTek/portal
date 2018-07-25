@@ -1,4 +1,4 @@
-<nav  class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="z-index:9999999999999">
+<nav  class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="z-index:9999999999999; border-bottom: 2px solid #e8e8e8;">
   <div class="container-fluid">
 
     <div class="navbar-header">
@@ -26,7 +26,7 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-<ng-sidebar-container style="height: 100vh" >
+<ng-sidebar-container style="height: 100vh; margin-top 5px;" >
       <!-- A sidebar -->
       <ng-sidebar
       	[(opened)]="_opened"
@@ -50,7 +50,7 @@
         (onCloseStart)="_onCloseStart()"
         (onClosed)="_onClosed()"
         (onTransitionEnd)="_onTransitionEnd()">
-          <div style="height:100vh; padding: 10px; width: 250px;">
+          <div style="height:100vh; padding: 10px; width: 250px; border-right: 2px solid #e8e8e8;">
         <ul class="nav menu" style="margin-top: 50px;">
 
     <li><a routerLinkActive="active" [routerLink]="['/home']"><i class="fa fas fa-home"></i> Home</a></li>
@@ -103,7 +103,7 @@
  
       <!-- Page content -->
       <div ng-sidebar-content>
-      <div  style="margin-top: 50px;">
+      <div  style="margin-top: 50px; padding-left:5px; padding-right:5px;">
         <router-outlet></router-outlet>
         </div>
       </div>
