@@ -621,8 +621,8 @@ var fakeBackendProvider = {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Globals; });
 var Globals = (function () {
     function Globals() {
-        this.baseURL = 'http://localhost:8081/tekweld/jwtservices';
-        //public baseURL = 'http://tekweld.xy8imwiyvs.us-east-2.elasticbeanstalk.com/jwtservices';
+        // public baseURL = 'http://localhost:8081/tekweld/jwtservices';
+        this.baseURL = 'http://tekweld.xy8imwiyvs.us-east-2.elasticbeanstalk.com/jwtservices';
     }
     return Globals;
 }());
