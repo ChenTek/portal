@@ -622,7 +622,8 @@ var fakeBackendProvider = {
 var Globals = (function () {
     function Globals() {
         // public baseURL = 'http://localhost:8081/tekweld/jwtservices';
-        this.baseURL = 'http://tekweld.xy8imwiyvs.us-east-2.elasticbeanstalk.com/jwtservices';
+        // public baseURL = 'http://tekweld.xy8imwiyvs.us-east-2.elasticbeanstalk.com/jwtservices';
+        this.baseURL = 'https://be.tektests.com/jwtservices';
     }
     return Globals;
 }());
