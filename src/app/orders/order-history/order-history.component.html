@@ -1,7 +1,7 @@
     
 <mat-accordion style="margin: 0px 0px 0px 0px; padding: 0px; ">
   <mat-expansion-panel style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; " 
-  					   [expanded]="true"
+  					   [expanded]="selected.length==0?true:false"
   					   (opened)="panelOpenState = true"
                        (closed)="panelOpenState = false">
     <mat-expansion-panel-header style="max-height: 35px !important; padding-top: 20px; padding-bottom: 10px;"  matTooltip="Expand / Collapse" >

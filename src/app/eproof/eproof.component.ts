@@ -6,7 +6,7 @@ import { EproofSource } from '../_sources/index';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import { DataSource } from '@angular/cdk/collections';
-import { MatPaginator, MatSort } from '@angular/material';
+import { MatPaginator, MatSort, MatExpansionModule } from '@angular/material';
 import {debounceTime, distinctUntilChanged, startWith, tap, delay, map} from 'rxjs/operators';
 import {merge} from "rxjs/observable/merge";
 import {fromEvent} from 'rxjs/observable/fromEvent';
@@ -29,7 +29,7 @@ obj: EProof;
     previousValue = -1;
   
     panelOpenState = true;
-
+  
   displayedColumns = this.getScreenSize()<this.screenSizeToAdjustTo?
     ["customer_code", "trans_no", "order_status", "shipping_status"]
     :
@@ -54,7 +54,6 @@ obj: EProof;
         this.dataSource = new EproofSource(this.service, this.alertService);
 
         this.dataSource.loadData('','trans_no', 'asc', 0, 30);
-    
   }
 
    ngAfterViewInit() {

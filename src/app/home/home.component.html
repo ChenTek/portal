@@ -3,7 +3,7 @@
     			<p>You're logged in and about to use this incredible new app!!</p>
     			<p><a [routerLink]="['/login']">Logout</a></p>
 			</div>  -->
-			<!--	
+				
 			<div id="close-container" class="fadeIn jumbotron"
 	style="margin-top: 15px; margin-bottom: 0px;">
 <mat-tab-group>
@@ -68,7 +68,7 @@
          <mat-panel-description>   
 
     </mat-panel-description>
-<!-- content here ->
+<!-- content here -->
 <mat-progress-bar mode="indeterminate" *ngIf="openOrderdataSource.loading$ | async" style="position: absolute; z-index: 99999; max-width: 79vw;"></mat-progress-bar>
 
 <mat-table [dataSource]="openOrderdataSource" style="resize: vertical; overflow: auto;"
@@ -127,7 +127,7 @@
          <mat-panel-description>   
 
     </mat-panel-description>
-<!-- content here ->
+<!-- content here -->
 <mat-progress-bar mode="indeterminate" *ngIf="orderHistorySource.loading$ | async" style="position: absolute; z-index: 99999; max-width: 79vw;"></mat-progress-bar>
 
 <mat-table [dataSource]="orderHistorySource" style="resize: vertical; overflow: auto;" scrollTracker [ngClass]="selected.length ? 'small_height' : ' full_height;'" #panel>
@@ -214,4 +214,4 @@
  		<app-estimates></app-estimates>
   </div>
   
-  </div>-->
+  </div>

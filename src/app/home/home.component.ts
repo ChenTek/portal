@@ -48,11 +48,11 @@ currentUser: User;
     ngOnInit() {
         this.loadAllUsers();
       
- //   this.order = this.route.snapshot.data["order"];
- //   this.openOrderdataSource = new OpenOrdersSource(this.ordersService, this.alertService);
- //   this.openOrderdataSource.loadOrders('', 'trans_no', 'desc', 0, 5);
- //   this.orderHistorySource = new OrderHistorySource(this.ordersService, this.alertService);
- //   this.orderHistorySource.loadOrders('','trans_no', 'desc', 0, 5);
+   // this.order = this.route.snapshot.data["order"];
+    this.openOrderdataSource = new OpenOrdersSource(this.ordersService, this.alertService);
+    this.openOrderdataSource.loadOrders('', 'trans_no', 'desc', 0, 5);
+    this.orderHistorySource = new OrderHistorySource(this.ordersService, this.alertService);
+    this.orderHistorySource.loadOrders('','trans_no', 'desc', 0, 5);
     }
 
     deleteUser(id: number) {

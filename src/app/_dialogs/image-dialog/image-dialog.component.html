@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>Image</h1>
+<div mat-dialog-content style="min-width:600px;">
+<mat-progress-bar mode="indeterminate" *ngIf="loading" style="position:relative; z-index:100; max-width:78vw;"></mat-progress-bar>
+<ngx-image-zoom style ="width:50px; height:50px"
+    [thumbImage]="'../../assets/images/art_sample.png'"
+    [fullImage]="'../../assets/images/art_sample.png'"
+    [magnification]="2"
+    [zoomMode]="'hover'"
+></ngx-image-zoom>
+</div>
+<div mat-dialog-actions>
+          <button type="button" style="margin-top: 0.5rem; margin-bottom: 0.5rem;" class="btn btn-primary small_font" [mat-dialog-close]="">
+            <span>Close</span>
+          </button>
+                    <button type="button" style="margin-top: 0.5rem; margin-bottom: 0.5rem;" class="btn btn-primary small_font">
+            <span>Edit</span>
+          </button>
+</div>
+

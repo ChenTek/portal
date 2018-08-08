@@ -9,6 +9,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';;
 
+import { NgxImageZoomModule } from 'ngx-image-zoom';
 // used to create fake backend
 //import { fakeBackendProvider } from './_helpers/index';
 
@@ -43,8 +44,11 @@ import { ShipEstimateComponent } from './ship-estimate/ship-estimate.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import { ShipEstimateWidgetComponent } from './ship-estimate/ship-estimate-widget/ship-estimate-widget.component';
 import { InventoryWidgetComponent } from './inventory/inventory-widget/inventory-widget.component';
+import {MatCardModule} from '@angular/material/card';
 
 import { SidebarModule } from 'ng-sidebar';
+import { ArtApprovalComponent } from './eproof/art-approval/art-approval.component';
+import { ImageDialogComponent } from './_dialogs/image-dialog/image-dialog.component';
 
 
 
@@ -77,7 +81,9 @@ import { SidebarModule } from 'ng-sidebar';
     MatTabsModule,
     MatCheckboxModule,
     NgxSoapModule,
-    SidebarModule.forRoot()
+    MatCardModule,
+    SidebarModule.forRoot(),
+     NgxImageZoomModule.forRoot()
         
     ],
     
@@ -105,7 +111,9 @@ import { SidebarModule } from 'ng-sidebar';
         ShipEstimateComponent,
         InventoryComponent,
         ShipEstimateWidgetComponent,
-        InventoryWidgetComponent
+        InventoryWidgetComponent,
+        ArtApprovalComponent,
+        ImageDialogComponent
 
     ],
     providers: [
@@ -133,7 +141,8 @@ import { SidebarModule } from 'ng-sidebar';
     bootstrap: [AppComponent],
       entryComponents: [
     ShippingInfoComponent,
-        PdfviewerComponent
+        PdfviewerComponent,
+        ImageDialogComponent
   ]
 })
 
