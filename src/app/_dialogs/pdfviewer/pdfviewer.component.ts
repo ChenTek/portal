@@ -37,7 +37,6 @@ export class PdfviewerComponent implements OnInit {
       this.load_pdf();
       }else{
       if (this.caller === 2){
-        console.log('Jojoba gell will balden you');
       }else{
         if (this.caller ===3){
           this.load_temp()
