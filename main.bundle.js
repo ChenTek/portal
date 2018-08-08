@@ -17,16 +17,70 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 
 /***/ }),
 
+/***/ "./src/app/_dialogs/image-dialog/image-dialog.component.css":
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/_dialogs/image-dialog/image-dialog.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<h1 mat-dialog-title>Image</h1>\n<div mat-dialog-content style=\"min-width:50vw; min-height: 70vh;\">\n<mat-progress-bar mode=\"indeterminate\" *ngIf=\"loading\" style=\"position:relative; z-index:100; max-width:78vw;\"></mat-progress-bar>\n<ngx-image-zoom\nstyle=\"width: 100%; height: 100%;\"\n    [thumbImage]=\"'../../assets/images/art_sample.png'\"\n    [fullImage]=\"'../../assets/images/art_sample.png'\"\n    [magnification]=\"2\"\n    [zoomMode]=\"'hover'\"\n    [enableScrollZoom] = \"true\"\n    [enableLens] = \"false\"\n></ngx-image-zoom>\n</div>\n<div mat-dialog-actions>\n\n          <button type=\"button\" style=\"margin-top: 0.5rem; margin-bottom: 0.5rem;\" class=\"btn btn-primary small_font\" [mat-dialog-close]=\"\">\n            <span>Close</span>\n          </button>\n</div>\n\n"
+
+/***/ }),
+
+/***/ "./src/app/_dialogs/image-dialog/image-dialog.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ImageDialogComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var ImageDialogComponent = (function () {
+    function ImageDialogComponent() {
+        this.loading = false;
+    }
+    ImageDialogComponent.prototype.ngOnInit = function () {
+    };
+    ImageDialogComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'app-image-dialog',
+            template: __webpack_require__("./src/app/_dialogs/image-dialog/image-dialog.component.html"),
+            styles: [__webpack_require__("./src/app/_dialogs/image-dialog/image-dialog.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], ImageDialogComponent);
+    return ImageDialogComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/_dialogs/index.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pdfviewer_pdfviewer_component__ = __webpack_require__("./src/app/_dialogs/pdfviewer/pdfviewer.component.ts");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__pdfviewer_pdfviewer_component__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_0__pdfviewer_pdfviewer_component__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shipping_info_shipping_info_component__ = __webpack_require__("./src/app/_dialogs/shipping-info/shipping-info.component.ts");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__shipping_info_shipping_info_component__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_1__shipping_info_shipping_info_component__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shipping_info_shipping_info_edit_shipping_info_edit_component__ = __webpack_require__("./src/app/_dialogs/shipping-info/shipping-info-edit/shipping-info-edit.component.ts");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_2__shipping_info_shipping_info_edit_shipping_info_edit_component__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_2__shipping_info_shipping_info_edit_shipping_info_edit_component__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__image_dialog_image_dialog_component__ = __webpack_require__("./src/app/_dialogs/image-dialog/image-dialog.component.ts");
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_3__image_dialog_image_dialog_component__["a"]; });
+
 
 
 
@@ -90,7 +144,6 @@ var PdfviewerComponent = (function () {
             }
             else {
                 if (this.caller === 2) {
-                    console.log('Jojoba gell will balden you');
                 }
                 else {
                     if (this.caller === 3) {
@@ -621,9 +674,9 @@ var fakeBackendProvider = {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Globals; });
 var Globals = (function () {
     function Globals() {
-        this.baseURL = 'http://localhost:8081/tekweld/jwtservices';
+        //public baseURL = 'http://localhost:8081/tekweld/jwtservices';
         // public baseURL = 'http://tekweld.xy8imwiyvs.us-east-2.elasticbeanstalk.com/jwtservices';
-        // public baseURL = 'https://be.tektests.com/jwtservices';
+        this.baseURL = 'https://be.tektests.com/jwtservices';
     }
     return Globals;
 }());
@@ -3168,37 +3221,41 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ngx_bootstrap_dropdown__ = __webpack_require__("./node_modules/ngx-bootstrap/dropdown/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ngx_bootstrap_tooltip__ = __webpack_require__("./node_modules/ngx-bootstrap/tooltip/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ngx_bootstrap_modal__ = __webpack_require__("./node_modules/ngx-bootstrap/modal/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_component__ = __webpack_require__("./src/app/app.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_routing__ = __webpack_require__("./src/app/app.routing.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__directives_index__ = __webpack_require__("./src/app/_directives/index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__guards_index__ = __webpack_require__("./src/app/_guards/index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__helpers_index__ = __webpack_require__("./src/app/_helpers/index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__directives_scroll_tracker__ = __webpack_require__("./src/app/_directives/scroll-tracker.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__angular_material__ = __webpack_require__("./node_modules/@angular/material/esm5/material.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_index__ = __webpack_require__("./src/app/_services/index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__home_index__ = __webpack_require__("./src/app/home/index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__login_index__ = __webpack_require__("./src/app/login/index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__register_index__ = __webpack_require__("./src/app/register/index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__navbar_navbar_component__ = __webpack_require__("./src/app/navbar/navbar.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__orders_index__ = __webpack_require__("./src/app/orders/index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__angular_platform_browser_animations__ = __webpack_require__("./node_modules/@angular/platform-browser/esm5/animations.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__ng_bootstrap_ng_bootstrap__ = __webpack_require__("./node_modules/@ng-bootstrap/ng-bootstrap/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__eproof_eproof_component__ = __webpack_require__("./src/app/eproof/eproof.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__missing_artwork_missing_artwork_component__ = __webpack_require__("./src/app/missing-artwork/missing-artwork.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__dialogs_index__ = __webpack_require__("./src/app/_dialogs/index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__angular_platform_browser_dynamic__ = __webpack_require__("./node_modules/@angular/platform-browser-dynamic/esm5/platform-browser-dynamic.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27_ng2_pdf_viewer__ = __webpack_require__("./node_modules/ng2-pdf-viewer/ng2-pdf-viewer.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pay_bills_pay_bills_component__ = __webpack_require__("./src/app/pay-bills/pay-bills.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__estimates_estimates_component__ = __webpack_require__("./src/app/estimates/estimates.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__stitch_approval_stitch_approval_component__ = __webpack_require__("./src/app/stitch-approval/stitch-approval.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__pre_production_approval_pre_production_approval_component__ = __webpack_require__("./src/app/pre-production-approval/pre-production-approval.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__ship_estimate_ship_estimate_component__ = __webpack_require__("./src/app/ship-estimate/ship-estimate.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__inventory_inventory_component__ = __webpack_require__("./src/app/inventory/inventory.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__ship_estimate_ship_estimate_widget_ship_estimate_widget_component__ = __webpack_require__("./src/app/ship-estimate/ship-estimate-widget/ship-estimate-widget.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__inventory_inventory_widget_inventory_widget_component__ = __webpack_require__("./src/app/inventory/inventory-widget/inventory-widget.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36_ng_sidebar__ = __webpack_require__("./node_modules/ng-sidebar/lib/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36_ng_sidebar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_36_ng_sidebar__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__eproof_art_approval_art_approval_component__ = __webpack_require__("./src/app/eproof/art-approval/art-approval.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_ngx_image_zoom__ = __webpack_require__("./node_modules/ngx-image-zoom/ngx-image-zoom.umd.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_ngx_image_zoom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_ngx_image_zoom__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_component__ = __webpack_require__("./src/app/app.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__app_routing__ = __webpack_require__("./src/app/app.routing.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__directives_index__ = __webpack_require__("./src/app/_directives/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__guards_index__ = __webpack_require__("./src/app/_guards/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__helpers_index__ = __webpack_require__("./src/app/_helpers/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__directives_scroll_tracker__ = __webpack_require__("./src/app/_directives/scroll-tracker.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__angular_material__ = __webpack_require__("./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__services_index__ = __webpack_require__("./src/app/_services/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__home_index__ = __webpack_require__("./src/app/home/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__login_index__ = __webpack_require__("./src/app/login/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__register_index__ = __webpack_require__("./src/app/register/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__navbar_navbar_component__ = __webpack_require__("./src/app/navbar/navbar.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__orders_index__ = __webpack_require__("./src/app/orders/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__angular_platform_browser_animations__ = __webpack_require__("./node_modules/@angular/platform-browser/esm5/animations.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__ng_bootstrap_ng_bootstrap__ = __webpack_require__("./node_modules/@ng-bootstrap/ng-bootstrap/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__eproof_eproof_component__ = __webpack_require__("./src/app/eproof/eproof.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__missing_artwork_missing_artwork_component__ = __webpack_require__("./src/app/missing-artwork/missing-artwork.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__dialogs_index__ = __webpack_require__("./src/app/_dialogs/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__angular_platform_browser_dynamic__ = __webpack_require__("./node_modules/@angular/platform-browser-dynamic/esm5/platform-browser-dynamic.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28_ng2_pdf_viewer__ = __webpack_require__("./node_modules/ng2-pdf-viewer/ng2-pdf-viewer.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pay_bills_pay_bills_component__ = __webpack_require__("./src/app/pay-bills/pay-bills.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__estimates_estimates_component__ = __webpack_require__("./src/app/estimates/estimates.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__stitch_approval_stitch_approval_component__ = __webpack_require__("./src/app/stitch-approval/stitch-approval.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pre_production_approval_pre_production_approval_component__ = __webpack_require__("./src/app/pre-production-approval/pre-production-approval.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__ship_estimate_ship_estimate_component__ = __webpack_require__("./src/app/ship-estimate/ship-estimate.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__inventory_inventory_component__ = __webpack_require__("./src/app/inventory/inventory.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__ship_estimate_ship_estimate_widget_ship_estimate_widget_component__ = __webpack_require__("./src/app/ship-estimate/ship-estimate-widget/ship-estimate-widget.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__inventory_inventory_widget_inventory_widget_component__ = __webpack_require__("./src/app/inventory/inventory-widget/inventory-widget.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__angular_material_card__ = __webpack_require__("./node_modules/@angular/material/esm5/card.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38_ng_sidebar__ = __webpack_require__("./node_modules/ng-sidebar/lib/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38_ng_sidebar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_38_ng_sidebar__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__eproof_art_approval_art_approval_component__ = __webpack_require__("./src/app/eproof/art-approval/art-approval.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__dialogs_image_dialog_image_dialog_component__ = __webpack_require__("./src/app/_dialogs/image-dialog/image-dialog.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3215,8 +3272,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 ;
+
 // used to create fake backend
 //import { fakeBackendProvider } from './_helpers/index';
+
+
 
 
 
@@ -3256,90 +3316,94 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* FormsModule */],
                 __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["c" /* HttpClientModule */],
-                __WEBPACK_IMPORTED_MODULE_9__app_routing__["a" /* routing */],
-                __WEBPACK_IMPORTED_MODULE_21__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
-                __WEBPACK_IMPORTED_MODULE_27_ng2_pdf_viewer__["a" /* PdfViewerModule */],
-                __WEBPACK_IMPORTED_MODULE_22__ng_bootstrap_ng_bootstrap__["a" /* NgbModule */].forRoot(),
+                __WEBPACK_IMPORTED_MODULE_10__app_routing__["a" /* routing */],
+                __WEBPACK_IMPORTED_MODULE_22__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
+                __WEBPACK_IMPORTED_MODULE_28_ng2_pdf_viewer__["a" /* PdfViewerModule */],
+                __WEBPACK_IMPORTED_MODULE_23__ng_bootstrap_ng_bootstrap__["a" /* NgbModule */].forRoot(),
                 __WEBPACK_IMPORTED_MODULE_5_ngx_bootstrap_dropdown__["a" /* BsDropdownModule */].forRoot(),
                 __WEBPACK_IMPORTED_MODULE_6_ngx_bootstrap_tooltip__["a" /* TooltipModule */].forRoot(),
                 __WEBPACK_IMPORTED_MODULE_7_ngx_bootstrap_modal__["a" /* ModalModule */].forRoot(),
-                __WEBPACK_IMPORTED_MODULE_14__angular_material__["i" /* MatInputModule */],
-                __WEBPACK_IMPORTED_MODULE_14__angular_material__["l" /* MatPaginatorModule */],
-                __WEBPACK_IMPORTED_MODULE_14__angular_material__["n" /* MatProgressSpinnerModule */],
-                __WEBPACK_IMPORTED_MODULE_14__angular_material__["r" /* MatSortModule */],
-                __WEBPACK_IMPORTED_MODULE_14__angular_material__["s" /* MatTableModule */],
-                __WEBPACK_IMPORTED_MODULE_14__angular_material__["m" /* MatProgressBarModule */],
-                __WEBPACK_IMPORTED_MODULE_14__angular_material__["g" /* MatExpansionModule */],
-                __WEBPACK_IMPORTED_MODULE_14__angular_material__["u" /* MatTooltipModule */],
-                __WEBPACK_IMPORTED_MODULE_14__angular_material__["p" /* MatSelectModule */],
-                __WEBPACK_IMPORTED_MODULE_14__angular_material__["e" /* MatDialogModule */],
-                __WEBPACK_IMPORTED_MODULE_14__angular_material__["o" /* MatRadioModule */],
-                __WEBPACK_IMPORTED_MODULE_14__angular_material__["h" /* MatFormFieldModule */],
-                __WEBPACK_IMPORTED_MODULE_14__angular_material__["c" /* MatDatepickerModule */],
-                __WEBPACK_IMPORTED_MODULE_14__angular_material__["j" /* MatNativeDateModule */],
-                __WEBPACK_IMPORTED_MODULE_14__angular_material__["t" /* MatTabsModule */],
-                __WEBPACK_IMPORTED_MODULE_14__angular_material__["b" /* MatCheckboxModule */],
+                __WEBPACK_IMPORTED_MODULE_15__angular_material__["i" /* MatInputModule */],
+                __WEBPACK_IMPORTED_MODULE_15__angular_material__["l" /* MatPaginatorModule */],
+                __WEBPACK_IMPORTED_MODULE_15__angular_material__["n" /* MatProgressSpinnerModule */],
+                __WEBPACK_IMPORTED_MODULE_15__angular_material__["r" /* MatSortModule */],
+                __WEBPACK_IMPORTED_MODULE_15__angular_material__["s" /* MatTableModule */],
+                __WEBPACK_IMPORTED_MODULE_15__angular_material__["m" /* MatProgressBarModule */],
+                __WEBPACK_IMPORTED_MODULE_15__angular_material__["g" /* MatExpansionModule */],
+                __WEBPACK_IMPORTED_MODULE_15__angular_material__["u" /* MatTooltipModule */],
+                __WEBPACK_IMPORTED_MODULE_15__angular_material__["p" /* MatSelectModule */],
+                __WEBPACK_IMPORTED_MODULE_15__angular_material__["e" /* MatDialogModule */],
+                __WEBPACK_IMPORTED_MODULE_15__angular_material__["o" /* MatRadioModule */],
+                __WEBPACK_IMPORTED_MODULE_15__angular_material__["h" /* MatFormFieldModule */],
+                __WEBPACK_IMPORTED_MODULE_15__angular_material__["c" /* MatDatepickerModule */],
+                __WEBPACK_IMPORTED_MODULE_15__angular_material__["j" /* MatNativeDateModule */],
+                __WEBPACK_IMPORTED_MODULE_15__angular_material__["t" /* MatTabsModule */],
+                __WEBPACK_IMPORTED_MODULE_15__angular_material__["b" /* MatCheckboxModule */],
                 __WEBPACK_IMPORTED_MODULE_2_ngx_soap__["a" /* NgxSoapModule */],
-                __WEBPACK_IMPORTED_MODULE_36_ng_sidebar__["SidebarModule"].forRoot()
+                __WEBPACK_IMPORTED_MODULE_37__angular_material_card__["a" /* MatCardModule */],
+                __WEBPACK_IMPORTED_MODULE_38_ng_sidebar__["SidebarModule"].forRoot(),
+                __WEBPACK_IMPORTED_MODULE_8_ngx_image_zoom__["NgxImageZoomModule"].forRoot()
             ],
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_8__app_component__["a" /* AppComponent */],
-                __WEBPACK_IMPORTED_MODULE_10__directives_index__["a" /* AlertComponent */],
-                __WEBPACK_IMPORTED_MODULE_16__home_index__["a" /* HomeComponent */],
-                __WEBPACK_IMPORTED_MODULE_17__login_index__["a" /* LoginComponent */],
-                __WEBPACK_IMPORTED_MODULE_18__register_index__["a" /* RegisterComponent */],
-                __WEBPACK_IMPORTED_MODULE_19__navbar_navbar_component__["a" /* NavbarComponent */],
-                __WEBPACK_IMPORTED_MODULE_20__orders_index__["a" /* OpenOrdersComponent */],
-                __WEBPACK_IMPORTED_MODULE_20__orders_index__["c" /* OrderHistoryComponent */],
-                __WEBPACK_IMPORTED_MODULE_20__orders_index__["d" /* SearchOrderComponent */],
-                __WEBPACK_IMPORTED_MODULE_23__eproof_eproof_component__["a" /* EproofComponent */],
-                __WEBPACK_IMPORTED_MODULE_24__missing_artwork_missing_artwork_component__["a" /* MissingArtworkComponent */],
-                __WEBPACK_IMPORTED_MODULE_20__orders_index__["b" /* OrderDetailsComponent */],
-                __WEBPACK_IMPORTED_MODULE_13__directives_scroll_tracker__["a" /* ScrollTrackerDirective */],
-                __WEBPACK_IMPORTED_MODULE_25__dialogs_index__["b" /* ShippingInfoComponent */],
-                __WEBPACK_IMPORTED_MODULE_25__dialogs_index__["c" /* ShippingInfoEditComponent */],
-                __WEBPACK_IMPORTED_MODULE_25__dialogs_index__["a" /* PdfviewerComponent */],
-                __WEBPACK_IMPORTED_MODULE_28__pay_bills_pay_bills_component__["a" /* PayBillsComponent */],
-                __WEBPACK_IMPORTED_MODULE_29__estimates_estimates_component__["a" /* EstimatesComponent */],
-                __WEBPACK_IMPORTED_MODULE_30__stitch_approval_stitch_approval_component__["a" /* StitchApprovalComponent */],
-                __WEBPACK_IMPORTED_MODULE_31__pre_production_approval_pre_production_approval_component__["a" /* PreProductionApprovalComponent */],
-                __WEBPACK_IMPORTED_MODULE_32__ship_estimate_ship_estimate_component__["a" /* ShipEstimateComponent */],
-                __WEBPACK_IMPORTED_MODULE_33__inventory_inventory_component__["a" /* InventoryComponent */],
-                __WEBPACK_IMPORTED_MODULE_34__ship_estimate_ship_estimate_widget_ship_estimate_widget_component__["a" /* ShipEstimateWidgetComponent */],
-                __WEBPACK_IMPORTED_MODULE_35__inventory_inventory_widget_inventory_widget_component__["a" /* InventoryWidgetComponent */],
-                __WEBPACK_IMPORTED_MODULE_37__eproof_art_approval_art_approval_component__["a" /* ArtApprovalComponent */]
+                __WEBPACK_IMPORTED_MODULE_9__app_component__["a" /* AppComponent */],
+                __WEBPACK_IMPORTED_MODULE_11__directives_index__["a" /* AlertComponent */],
+                __WEBPACK_IMPORTED_MODULE_17__home_index__["a" /* HomeComponent */],
+                __WEBPACK_IMPORTED_MODULE_18__login_index__["a" /* LoginComponent */],
+                __WEBPACK_IMPORTED_MODULE_19__register_index__["a" /* RegisterComponent */],
+                __WEBPACK_IMPORTED_MODULE_20__navbar_navbar_component__["a" /* NavbarComponent */],
+                __WEBPACK_IMPORTED_MODULE_21__orders_index__["a" /* OpenOrdersComponent */],
+                __WEBPACK_IMPORTED_MODULE_21__orders_index__["c" /* OrderHistoryComponent */],
+                __WEBPACK_IMPORTED_MODULE_21__orders_index__["d" /* SearchOrderComponent */],
+                __WEBPACK_IMPORTED_MODULE_24__eproof_eproof_component__["a" /* EproofComponent */],
+                __WEBPACK_IMPORTED_MODULE_25__missing_artwork_missing_artwork_component__["a" /* MissingArtworkComponent */],
+                __WEBPACK_IMPORTED_MODULE_21__orders_index__["b" /* OrderDetailsComponent */],
+                __WEBPACK_IMPORTED_MODULE_14__directives_scroll_tracker__["a" /* ScrollTrackerDirective */],
+                __WEBPACK_IMPORTED_MODULE_26__dialogs_index__["c" /* ShippingInfoComponent */],
+                __WEBPACK_IMPORTED_MODULE_26__dialogs_index__["d" /* ShippingInfoEditComponent */],
+                __WEBPACK_IMPORTED_MODULE_26__dialogs_index__["b" /* PdfviewerComponent */],
+                __WEBPACK_IMPORTED_MODULE_29__pay_bills_pay_bills_component__["a" /* PayBillsComponent */],
+                __WEBPACK_IMPORTED_MODULE_30__estimates_estimates_component__["a" /* EstimatesComponent */],
+                __WEBPACK_IMPORTED_MODULE_31__stitch_approval_stitch_approval_component__["a" /* StitchApprovalComponent */],
+                __WEBPACK_IMPORTED_MODULE_32__pre_production_approval_pre_production_approval_component__["a" /* PreProductionApprovalComponent */],
+                __WEBPACK_IMPORTED_MODULE_33__ship_estimate_ship_estimate_component__["a" /* ShipEstimateComponent */],
+                __WEBPACK_IMPORTED_MODULE_34__inventory_inventory_component__["a" /* InventoryComponent */],
+                __WEBPACK_IMPORTED_MODULE_35__ship_estimate_ship_estimate_widget_ship_estimate_widget_component__["a" /* ShipEstimateWidgetComponent */],
+                __WEBPACK_IMPORTED_MODULE_36__inventory_inventory_widget_inventory_widget_component__["a" /* InventoryWidgetComponent */],
+                __WEBPACK_IMPORTED_MODULE_39__eproof_art_approval_art_approval_component__["a" /* ArtApprovalComponent */],
+                __WEBPACK_IMPORTED_MODULE_40__dialogs_image_dialog_image_dialog_component__["a" /* ImageDialogComponent */]
             ],
             providers: [
-                __WEBPACK_IMPORTED_MODULE_11__guards_index__["a" /* AuthGuard */],
-                __WEBPACK_IMPORTED_MODULE_15__services_index__["a" /* AlertService */],
-                __WEBPACK_IMPORTED_MODULE_15__services_index__["b" /* AuthenticationService */],
-                __WEBPACK_IMPORTED_MODULE_15__services_index__["l" /* UserService */],
-                __WEBPACK_IMPORTED_MODULE_15__services_index__["g" /* OrdersService */],
-                __WEBPACK_IMPORTED_MODULE_15__services_index__["c" /* EproofService */],
-                __WEBPACK_IMPORTED_MODULE_15__services_index__["f" /* MissingArtworkService */],
-                __WEBPACK_IMPORTED_MODULE_15__services_index__["h" /* PayBillsService */],
-                __WEBPACK_IMPORTED_MODULE_15__services_index__["d" /* EstimatesService */],
-                __WEBPACK_IMPORTED_MODULE_15__services_index__["j" /* StitchApprovalService */],
-                __WEBPACK_IMPORTED_MODULE_15__services_index__["i" /* PreProductionApprovalService */],
-                __WEBPACK_IMPORTED_MODULE_15__services_index__["k" /* UpsShippingService */],
-                __WEBPACK_IMPORTED_MODULE_15__services_index__["e" /* InventoryService */],
+                __WEBPACK_IMPORTED_MODULE_12__guards_index__["a" /* AuthGuard */],
+                __WEBPACK_IMPORTED_MODULE_16__services_index__["a" /* AlertService */],
+                __WEBPACK_IMPORTED_MODULE_16__services_index__["b" /* AuthenticationService */],
+                __WEBPACK_IMPORTED_MODULE_16__services_index__["l" /* UserService */],
+                __WEBPACK_IMPORTED_MODULE_16__services_index__["g" /* OrdersService */],
+                __WEBPACK_IMPORTED_MODULE_16__services_index__["c" /* EproofService */],
+                __WEBPACK_IMPORTED_MODULE_16__services_index__["f" /* MissingArtworkService */],
+                __WEBPACK_IMPORTED_MODULE_16__services_index__["h" /* PayBillsService */],
+                __WEBPACK_IMPORTED_MODULE_16__services_index__["d" /* EstimatesService */],
+                __WEBPACK_IMPORTED_MODULE_16__services_index__["j" /* StitchApprovalService */],
+                __WEBPACK_IMPORTED_MODULE_16__services_index__["i" /* PreProductionApprovalService */],
+                __WEBPACK_IMPORTED_MODULE_16__services_index__["k" /* UpsShippingService */],
+                __WEBPACK_IMPORTED_MODULE_16__services_index__["e" /* InventoryService */],
                 {
                     provide: __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["a" /* HTTP_INTERCEPTORS */],
-                    useClass: __WEBPACK_IMPORTED_MODULE_12__helpers_index__["b" /* JwtInterceptor */],
+                    useClass: __WEBPACK_IMPORTED_MODULE_13__helpers_index__["b" /* JwtInterceptor */],
                     multi: true
                 },
             ],
-            bootstrap: [__WEBPACK_IMPORTED_MODULE_8__app_component__["a" /* AppComponent */]],
+            bootstrap: [__WEBPACK_IMPORTED_MODULE_9__app_component__["a" /* AppComponent */]],
             entryComponents: [
-                __WEBPACK_IMPORTED_MODULE_25__dialogs_index__["b" /* ShippingInfoComponent */],
-                __WEBPACK_IMPORTED_MODULE_25__dialogs_index__["a" /* PdfviewerComponent */]
+                __WEBPACK_IMPORTED_MODULE_26__dialogs_index__["c" /* ShippingInfoComponent */],
+                __WEBPACK_IMPORTED_MODULE_26__dialogs_index__["b" /* PdfviewerComponent */],
+                __WEBPACK_IMPORTED_MODULE_40__dialogs_image_dialog_image_dialog_component__["a" /* ImageDialogComponent */]
             ]
         })
     ], AppModule);
     return AppModule;
 }());
 
-Object(__WEBPACK_IMPORTED_MODULE_26__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(AppModule);
+Object(__WEBPACK_IMPORTED_MODULE_27__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(AppModule);
 
 
 /***/ }),
@@ -3403,14 +3467,14 @@ var routing = __WEBPACK_IMPORTED_MODULE_0__angular_router__["d" /* RouterModule 
 /***/ "./src/app/eproof/art-approval/art-approval.component.css":
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = ".card {\r\n\twidth: 300px;\r\n  max-width: 400px;\r\n}\r\n\r\n.card-header-image {\r\n  background-size: cover;\r\n}"
 
 /***/ }),
 
 /***/ "./src/app/eproof/art-approval/art-approval.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"close-container\" class=\"fadeIn jumbotron\"\n\tstyle=\"margin-top: 15px;\">\n\t<div style=\"margin-bottom: 15px;\">\n\t\t<button id=\"x\" (click)=\"closeThis()\" type=\"button\"\n\t\t\tclass=\"btn btn-default\">\n\t\t\t<i></i> <span>X</span>\n\t\t</button>\n\t</div>\n\t<ng-sidebar-container style=\"height: 500px; width: 100%;\">\n\t<ng-sidebar \n\t[opened]=\"true\"\n\t[dock]=\"true\"\n        [dockedSize]=\"'50px'\"\n        style=\"\">\n        <ul class=\"nav menu\">\n    <li>Factory Order# :</li>\n    <li>PO# : </li>\n\t<li>Product# :</li>\n\t<li>Product Color :</li>\n\t<li>Imprint Type :</li>\n\t<li>Imprint Color :</li>\n\t<li>Qty :</li>\n\t<li>email@email.com</li>\n    <li><li role=\"presentation\" class=\"divider\"></li>\n    <li><button type=\"button\"\n\t\t\t\t\tstyle=\"margin-top: 0.5rem; margin-bottom: 0.5rem; min-width: 150px;\"\n\t\t\t\t\tclass=\"btn btn-primary\">\n\t\t\t\t\t<i class=\"fa far fa-comment\"></i> <span>Comment</span>\n\t\t\t\t</button></li>\n    <li><button type=\"button\"\n\t\t\t\t\tstyle=\"margin-top: 0.5rem; margin-bottom: 0.5rem; min-width: 150px;\"\n\t\t\t\t\tclass=\"btn btn-primary\">\n\t\t\t\t\t<i class=\"fa fas fa-search-plus\"></i> <span>Zoom In</span>\n\t\t\t\t</button></li>\n    <li><button type=\"button\"\n\t\t\t\t\tstyle=\"margin-top: 0.5rem; margin-bottom: 0.5rem; min-width: 150px;\"\n\t\t\t\t\tclass=\"btn btn-primary\">\n\t\t\t\t\t<i class=\"fa fas fa-search-minus\"></i> <span>Zoom Out</span>\n\t\t\t\t</button></li>\n    <li><button type=\"button\"\n\t\t\t\t\tstyle=\"margin-top: 0.5rem; margin-bottom: 0.5rem; min-width: 150px;\"\n\t\t\t\t\tclass=\"btn btn-primary\">\n\t\t\t\t\t<i class=\"fa fas fa-expand\"></i> <span>Fit to Page</span>\n\t\t\t\t</button></li>\n    <li><button type=\"button\"\n\t\t\t\t\tstyle=\"margin-top: 0.5rem; margin-bottom: 0.5rem; min-width: 150px;\"\n\t\t\t\t\tclass=\"btn btn-primary\">\n\t\t\t\t\t<i class=\"fa fas fa-download\"></i> <span>Download Proof</span>\n\t\t\t\t</button></li>\n    \n\n  </ul>\n        </ng-sidebar>\n        <div ng-sidebar-content>\n      <div  style=\"margin-top: 50px; padding-left:5px; padding-right:5px;\">\n        bla bla bla\n        </div>\n      </div>\n\t</ng-sidebar-container>\n\t</div>\n\t<!-- \n\t<div class=\"row\" style=\"padding: 0px; margin:0px;\">\n\t<!-- side bar --\n\t\t<div class=\"col-md-2 small_note\">\n        <ul class=\"nav menu\">\n    <li>Factory Order# :</li>\n    <li>PO# : </li>\n\t<li>Product# :</li>\n\t<li>Product Color :</li>\n\t<li>Imprint Type :</li>\n\t<li>Imprint Color :</li>\n\t<li>Qty :</li>\n\t<li>email@email.com</li>\n    <li><li role=\"presentation\" class=\"divider\"></li>\n    <li><button type=\"button\"\n\t\t\t\t\tstyle=\"margin-top: 0.5rem; margin-bottom: 0.5rem; min-width: 150px;\"\n\t\t\t\t\tclass=\"btn btn-primary\">\n\t\t\t\t\t<i class=\"fa far fa-comment\"></i> <span>Comment</span>\n\t\t\t\t</button></li>\n    <li><button type=\"button\"\n\t\t\t\t\tstyle=\"margin-top: 0.5rem; margin-bottom: 0.5rem; min-width: 150px;\"\n\t\t\t\t\tclass=\"btn btn-primary\">\n\t\t\t\t\t<i class=\"fa fas fa-search-plus\"></i> <span>Zoom In</span>\n\t\t\t\t</button></li>\n    <li><button type=\"button\"\n\t\t\t\t\tstyle=\"margin-top: 0.5rem; margin-bottom: 0.5rem; min-width: 150px;\"\n\t\t\t\t\tclass=\"btn btn-primary\">\n\t\t\t\t\t<i class=\"fa fas fa-search-minus\"></i> <span>Zoom Out</span>\n\t\t\t\t</button></li>\n    <li><button type=\"button\"\n\t\t\t\t\tstyle=\"margin-top: 0.5rem; margin-bottom: 0.5rem; min-width: 150px;\"\n\t\t\t\t\tclass=\"btn btn-primary\">\n\t\t\t\t\t<i class=\"fa fas fa-expand\"></i> <span>Fit to Page</span>\n\t\t\t\t</button></li>\n    <li><button type=\"button\"\n\t\t\t\t\tstyle=\"margin-top: 0.5rem; margin-bottom: 0.5rem; min-width: 150px;\"\n\t\t\t\t\tclass=\"btn btn-primary\">\n\t\t\t\t\t<i class=\"fa fas fa-download\"></i> <span>Download Proof</span>\n\t\t\t\t</button></li>\n  </ul>\n\t</div>\n\t<!-- main --\n\t\t<div class=\"col-md-8\">Selected: {{selection[0].ext_ref_no}} </div>\n\t<!-- side bar --\n\t\t<div class=\"col-md-2 small_note\" style=\"background: #000\">Selected: {{selection[0].ext_ref_no}} </div>\n\t</div>\n</div> -->"
+module.exports = "<div id=\"close-container\" class=\"fadeIn jumbotron\"\n\tstyle=\"margin-top: 15px; height: 83vh;\">\n\t<div style=\"margin-bottom: 15px;\">\n\t\t<button id=\"x\" (click)=\"closeThis()\" type=\"button\"\n\t\t\tclass=\"btn btn-default\">\n\t\t\t<i></i> <span>X</span>\n\t\t</button>\n\t</div>\n\t<ng-sidebar-container style=\"height: 78vh; width: 100%;\">\n\t<ng-sidebar [opened]=\"true\" [dock]=\"true\" [dockedSize]=\"'150px'\"\n\t\tstyle=\"\">\n\t<ul class=\"nav menu\">\n\t\t<li>Factory Order# :</li>\n\t\t<li>PO# :</li>\n\t\t<li>Product# :</li>\n\t\t<li>Product Color :</li>\n\t\t<li>Imprint Type :</li>\n\t\t<li>Imprint Color :</li>\n\t\t<li>Qty :</li>\n\t\t<li>email@email.com</li>\n\t\t<li>\n\t\t<li role=\"presentation\" class=\"divider\"></li>\n\t\t<li><button type=\"button\"\n\t\t\t\tstyle=\"margin-top: 0.5rem; margin-bottom: 0.5rem; min-width: 150px;\"\n\t\t\t\tclass=\"btn btn-primary\">\n\t\t\t\t<i class=\"fa far fa-comment\"></i> <span>Comment</span>\n\t\t\t</button></li>\n\t\t<li><button type=\"button\" (click)=\"openImageDialog()\"\n\t\t\t\tstyle=\"margin-top: 0.5rem; margin-bottom: 0.5rem; min-width: 150px;\"\n\t\t\t\tclass=\"btn btn-primary\">\n\t\t\t\t<i class=\"fa fas fa-search-plus\"></i> <span>Zoom In</span>\n\t\t\t</button></li>\n\t\t<li><button type=\"button\" (click)=\"openImageDialog()\"\n\t\t\t\tstyle=\"margin-top: 0.5rem; margin-bottom: 0.5rem; min-width: 150px;\"\n\t\t\t\tclass=\"btn btn-primary\">\n\t\t\t\t<i class=\"fa fas fa-search-minus\"></i> <span>Zoom Out</span>\n\t\t\t</button></li>\n\t\t<li><button type=\"button\"\n\t\t\t\tstyle=\"margin-top: 0.5rem; margin-bottom: 0.5rem; min-width: 150px;\"\n\t\t\t\tclass=\"btn btn-primary\">\n\t\t\t\t<i class=\"fa fas fa-expand\"></i> <span>Fit to Page</span>\n\t\t\t</button></li>\n\t\t<li><button type=\"button\" (click)=\"openPdf()\"\n\t\t\t\tstyle=\"margin-top: 0.5rem; margin-bottom: 0.5rem; min-width: 150px;\"\n\t\t\t\tclass=\"btn btn-primary\">\n\t\t\t\t<i class=\"fa fas fa-download\"></i> <span>Download Proof</span>\n\t\t\t</button></li>\n\n\n\t</ul>\n\t</ng-sidebar>\n\t<div ng-sidebar-content>\n\t\t<div style=\"margin-left: 50px; padding-left: 5px; padding-right: 5px;\">\n\t\t\t<div > \n\n\t\t\t<div class=\"row\">\n\t\t\t\t<div class=\"col-md-4\"  *ngFor=\"let dumb of dummy\">\n\t\t\t\t<mat-card class=\"card\"> <mat-card-header>\n\t\t\t\t<div mat-card-avatar class=\"card-header-image\"></div>\n\t\t\t\t<mat-card-title>Title</mat-card-title> <mat-card-subtitle>Version 1.0</mat-card-subtitle> </mat-card-header> <img mat-card-image> <mat-card-content>\n\t\t\t\t<p></p><img mat-card-image\n\t\t\t\t\tsrc=\"../../assets/images/art_sample.png\"\n\t\t\t\t\talt=\"filename\"> \n\t\t\t\t</mat-card-content> <mat-card-actions>\n\t\t\t\t<button mat-button (click)=\"openPdf()\">Download</button>\n\t\t\t\t<button mat-button (click)=\"openImageDialog()\">Zoom</button>\n\t\t\t\t</mat-card-actions> \n\t\t\t\t</mat-card>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t\t</div>\n\t</div>\n\t</ng-sidebar-container>\n</div>\n<!-- \n\t<div class=\"row\" style=\"padding: 0px; margin:0px;\">\n\t<!-- side bar --\n\t\t<div class=\"col-md-2 small_note\">\n        <ul class=\"nav menu\">\n    <li>Factory Order# :</li>\n    <li>PO# : </li>\n\t<li>Product# :</li>\n\t<li>Product Color :</li>\n\t<li>Imprint Type :</li>\n\t<li>Imprint Color :</li>\n\t<li>Qty :</li>\n\t<li>email@email.com</li>\n    <li><li role=\"presentation\" class=\"divider\"></li>\n    <li><button type=\"button\"\n\t\t\t\t\tstyle=\"margin-top: 0.5rem; margin-bottom: 0.5rem; min-width: 150px;\"\n\t\t\t\t\tclass=\"btn btn-primary\">\n\t\t\t\t\t<i class=\"fa far fa-comment\"></i> <span>Comment</span>\n\t\t\t\t</button></li>\n    <li><button type=\"button\"\n\t\t\t\t\tstyle=\"margin-top: 0.5rem; margin-bottom: 0.5rem; min-width: 150px;\"\n\t\t\t\t\tclass=\"btn btn-primary\">\n\t\t\t\t\t<i class=\"fa fas fa-search-plus\"></i> <span>Zoom In</span>\n\t\t\t\t</button></li>\n    <li><button type=\"button\"\n\t\t\t\t\tstyle=\"margin-top: 0.5rem; margin-bottom: 0.5rem; min-width: 150px;\"\n\t\t\t\t\tclass=\"btn btn-primary\">\n\t\t\t\t\t<i class=\"fa fas fa-search-minus\"></i> <span>Zoom Out</span>\n\t\t\t\t</button></li>\n    <li><button type=\"button\"\n\t\t\t\t\tstyle=\"margin-top: 0.5rem; margin-bottom: 0.5rem; min-width: 150px;\"\n\t\t\t\t\tclass=\"btn btn-primary\">\n\t\t\t\t\t<i class=\"fa fas fa-expand\"></i> <span>Fit to Page</span>\n\t\t\t\t</button></li>\n    <li><button type=\"button\"\n\t\t\t\t\tstyle=\"margin-top: 0.5rem; margin-bottom: 0.5rem; min-width: 150px;\"\n\t\t\t\t\tclass=\"btn btn-primary\">\n\t\t\t\t\t<i class=\"fa fas fa-download\"></i> <span>Download Proof</span>\n\t\t\t\t</button></li>\n  </ul>\n\t</div>\n\t<!-- main --\n\t\t<div class=\"col-md-8\">Selected: {{selection[0].ext_ref_no}} </div>\n\t<!-- side bar --\n\t\t<div class=\"col-md-2 small_note\" style=\"background: #000\">Selected: {{selection[0].ext_ref_no}} </div>\n\t</div>\n</div> -->"
 
 /***/ }),
 
@@ -3419,7 +3483,9 @@ module.exports = "<div id=\"close-container\" class=\"fadeIn jumbotron\"\n\tstyl
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ArtApprovalComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dialogs_index__ = __webpack_require__("./src/app/_dialogs/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_material__ = __webpack_require__("./node_modules/@angular/material/esm5/material.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3430,30 +3496,57 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
 var ArtApprovalComponent = (function () {
-    function ArtApprovalComponent() {
-        this.close = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+    function ArtApprovalComponent(dialog) {
+        this.dialog = dialog;
+        this.close = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["EventEmitter"]();
+        this.dummy = ['a'];
     }
     ArtApprovalComponent.prototype.ngOnInit = function () {
     };
     ArtApprovalComponent.prototype.closeThis = function () {
         this.close.emit("close");
     };
+    ArtApprovalComponent.prototype.openPdf = function () {
+        this.openPdfDialog('../assets/images/proof_sample.pdf', '', 3);
+    };
+    ArtApprovalComponent.prototype.openPdfDialog = function (url, msg, caller) {
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_0__dialogs_index__["b" /* PdfviewerComponent */], {
+            //width: '600px',
+            data: { urlSrc: url, message: msg, caller: caller }
+        });
+        dialogRef.afterClosed().subscribe(function (result) {
+            console.log('The dialog was closed');
+            //LOGIC FOR DIALOG CLOSED
+        });
+    };
+    ArtApprovalComponent.prototype.openImageDialog = function (url, msg, caller) {
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_0__dialogs_index__["a" /* ImageDialogComponent */], {
+            //width: '600px',
+            data: { urlSrc: url, message: msg, caller: caller }
+        });
+        dialogRef.afterClosed().subscribe(function (result) {
+            console.log('The dialog was closed');
+            //LOGIC FOR DIALOG CLOSED
+        });
+    };
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Input"])(),
         __metadata("design:type", Array)
     ], ArtApprovalComponent.prototype, "selection", void 0);
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Output"])(),
         __metadata("design:type", Object)
     ], ArtApprovalComponent.prototype, "close", void 0);
     ArtApprovalComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Component"])({
             selector: 'app-art-approval',
             template: __webpack_require__("./src/app/eproof/art-approval/art-approval.component.html"),
             styles: [__webpack_require__("./src/app/eproof/art-approval/art-approval.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_material__["d" /* MatDialog */]])
     ], ArtApprovalComponent);
     return ArtApprovalComponent;
 }());
@@ -3707,7 +3800,7 @@ var EstimatesComponent = (function () {
         this.openPdfDialog('http://localhost:8081/Tekweld/jwtservices/orders/Invoice?orderId', '', 3);
     };
     EstimatesComponent.prototype.openPdfDialog = function (url, msg, caller) {
-        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_0__dialogs__["a" /* PdfviewerComponent */], {
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_0__dialogs__["b" /* PdfviewerComponent */], {
             //width: '600px',
             data: { urlSrc: url, message: msg, caller: caller }
         });
@@ -4617,7 +4710,7 @@ var OrderDetailsComponent = (function () {
         return parseFloat(value);
     };
     OrderDetailsComponent.prototype.getShippingAdress = function () {
-        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_2__dialogs_index__["b" /* ShippingInfoComponent */], {
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_2__dialogs_index__["c" /* ShippingInfoComponent */], {
             //width: '600px',
             data: { oid: this.orderDetails[0].trans_no }
         });
@@ -4627,7 +4720,7 @@ var OrderDetailsComponent = (function () {
         });
     };
     OrderDetailsComponent.prototype.openPdfDialog = function (url, msg, caller) {
-        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_2__dialogs_index__["a" /* PdfviewerComponent */], {
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_2__dialogs_index__["b" /* PdfviewerComponent */], {
             //width: '600px',
             data: { urlSrc: url, message: msg, caller: caller }
         });
