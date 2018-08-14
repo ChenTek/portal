@@ -57,11 +57,27 @@
 				<div class="col-md-4"  *ngFor="let dumb of dummy">
 				<mat-card class="card"> <mat-card-header>
 				<div mat-card-avatar class="card-header-image"></div>
-				<mat-card-title>Title</mat-card-title> <mat-card-subtitle>Version 1.0</mat-card-subtitle> </mat-card-header> <img mat-card-image> <mat-card-content>
-				<p></p><img mat-card-image
-					src="../../assets/images/art_sample.png"
+				<mat-card-title>Title</mat-card-title> 
+				<mat-card-subtitle>Version 1.0</mat-card-subtitle> 
+				</mat-card-header> 
+				<img mat-card-image> 
+				<mat-card-content>
+				
+				  <div>
+      <label>PDF src</label>
+      <input type="text" placeholder="PDF src" [(ngModel)]="pdfSrc">
+  </div>
+  <pdf-viewer [src]="pdfSrc" 
+              [render-text]="true"
+              style="display: block;"
+  ></pdf-viewer>
+				
+				<p></p>
+				<img mat-card-image
+					src="https://chentek.github.io/portal/assets/images/art_sample.png"
 					alt="filename"> 
-				</mat-card-content> <mat-card-actions>
+				</mat-card-content> 
+				<mat-card-actions>
 				<button mat-button (click)="openPdf()">Download</button>
 				<button mat-button (click)="openImageDialog()">Zoom</button>
 				</mat-card-actions> 

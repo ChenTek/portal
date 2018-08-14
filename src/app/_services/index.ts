@@ -10,3 +10,4 @@ export * from './stitch-approval.service';
 export * from './pre-production-approval.service';
 export * from './ups-shipping.service';
 export * from './inventory.service';
+export * from './image.service';

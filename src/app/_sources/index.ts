@@ -8,3 +8,4 @@ export * from './estimates.source';
 export * from './stitch-approval.source';
 export * from './pre-production-approval.source';
 export * from './inventory.source';
+export * from './image.source';

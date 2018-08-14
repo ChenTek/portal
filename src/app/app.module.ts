@@ -22,7 +22,7 @@ import { ScrollTrackerDirective } from './_directives/scroll-tracker';
 import { MatInputModule, MatPaginatorModule, MatProgressSpinnerModule, 
          MatSortModule, MatTableModule, MatProgressBarModule, MatExpansionModule, 
          MatTooltipModule, MatSelectModule, MatDialogModule, MatRadioModule, MatFormFieldModule, MatDatepickerModule, MatNativeDateModule, MatTabsModule, MatCheckboxModule } from "@angular/material";
-import { AlertService, AuthenticationService, UserService, OrdersService, EproofService, MissingArtworkService, PayBillsService, EstimatesService, StitchApprovalService, PreProductionApprovalService, UpsShippingService, InventoryService } from './_services/index';
+import { AlertService, AuthenticationService, UserService, OrdersService, EproofService, MissingArtworkService, PayBillsService, EstimatesService, StitchApprovalService, PreProductionApprovalService, UpsShippingService, InventoryService, ImageService } from './_services/index';
 import { HomeComponent } from './home/index';
 import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
@@ -130,6 +130,7 @@ import { ImageDialogComponent } from './_dialogs/image-dialog/image-dialog.compo
         PreProductionApprovalService,
         UpsShippingService,
         InventoryService,
+        ImageService,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: JwtInterceptor,

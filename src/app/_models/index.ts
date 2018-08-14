@@ -9,3 +9,4 @@ export * from'./pay-bills';
 export * from'./estimate';
 export * from'./stitch-approval';
 export * from'./pre-production-approval';
+export * from'./image-object';
