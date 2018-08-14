@@ -22,7 +22,10 @@ export class ArtApprovalComponent implements OnInit {
   bla: string;
   loading = true;
   pdfSrc: string = 'https://tekweld.promo.tekweld.com//attachments/TEKW1122/537546-C/CB300-GREEN-v1.pdf';
-  
+  pita = {
+ url: 'https://tekweld.promo.tekweld.com//attachments/TEKW1122/537546-C/CB300-GREEN-v1.pdf',
+ withCredentials: false
+}
   constructor(public dialog: MatDialog, private route: ActivatedRoute, private service: ImageService, private alertService: AlertService) { this.dummy = ['a','b']
 }
 
