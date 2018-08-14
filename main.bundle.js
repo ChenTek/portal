@@ -174,7 +174,7 @@ var PdfviewerComponent = (function () {
             selector: 'app-pdfviewer',
             template: __webpack_require__("./src/app/_dialogs/pdfviewer/pdfviewer.component.html"),
             styles: [__webpack_require__("./src/app/_dialogs/pdfviewer/pdfviewer.component.css")],
-            providers: [__WEBPACK_IMPORTED_MODULE_2__services_index__["g" /* OrdersService */],
+            providers: [__WEBPACK_IMPORTED_MODULE_2__services_index__["h" /* OrdersService */],
                 { provide: 'Window', useValue: window }
             ]
         }),
@@ -328,7 +328,7 @@ var ShippingInfoComponent = (function () {
         }),
         __param(3, Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Inject"])(__WEBPACK_IMPORTED_MODULE_2__angular_material__["a" /* MAT_DIALOG_DATA */])),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_material__["f" /* MatDialogRef */],
-            __WEBPACK_IMPORTED_MODULE_0__services_index__["g" /* OrdersService */],
+            __WEBPACK_IMPORTED_MODULE_0__services_index__["h" /* OrdersService */],
             __WEBPACK_IMPORTED_MODULE_0__services_index__["a" /* AlertService */], Object])
     ], ShippingInfoComponent);
     return ShippingInfoComponent;
@@ -674,9 +674,9 @@ var fakeBackendProvider = {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Globals; });
 var Globals = (function () {
     function Globals() {
-        //public baseURL = 'http://localhost:8081/tekweld/jwtservices';
+        this.baseURL = 'http://localhost:8081/tekweld-backend/jwtservices';
         // public baseURL = 'http://tekweld.xy8imwiyvs.us-east-2.elasticbeanstalk.com/jwtservices';
-        this.baseURL = 'https://be.tektests.com/jwtservices';
+        // public baseURL = 'https://be.tektests.com/jwtservices';
     }
     return Globals;
 }());
@@ -1031,6 +1031,21 @@ var Estimate = (function () {
 
 /***/ }),
 
+/***/ "./src/app/_models/image-object.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* unused harmony export ImageObject */
+var ImageObject = (function () {
+    function ImageObject() {
+    }
+    return ImageObject;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/_models/index.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1057,6 +1072,9 @@ var Estimate = (function () {
 /* unused harmony namespace reexport */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pre_production_approval__ = __webpack_require__("./src/app/_models/pre-production-approval.ts");
 /* unused harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__image_object__ = __webpack_require__("./src/app/_models/image-object.ts");
+/* unused harmony namespace reexport */
+
 
 
 
@@ -1579,6 +1597,108 @@ var EstimatesService = (function () {
 
 /***/ }),
 
+/***/ "./src/app/_services/image.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ImageService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__helpers_index__ = __webpack_require__("./src/app/_helpers/index.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var ImageService = (function () {
+    function ImageService(http) {
+        this.http = http;
+        this.baseURL = new __WEBPACK_IMPORTED_MODULE_2__helpers_index__["a" /* Globals */]().baseURL;
+        this.displayHeaders();
+    }
+    ImageService.prototype.displayHeaders = function () {
+        var header = new __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["d" /* HttpHeaders */]();
+        // header.append('token','22');
+        console.log(header.get('Authorization'));
+    };
+    ImageService.prototype.getResults = function (orderId) {
+        // let header=new HttpHeaders({'Content-Type': 'application/json', 'Authorization': 'Bearer '+ JSON.parse(localStorage.getItem('currentUser')).map.token});
+        return this.http.get(this.baseURL + '/Image' //, {headers: header},
+        , {
+            params: new __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["e" /* HttpParams */]()
+                .set('orderId', orderId)
+        })
+            .map(function (result) {
+            // login successful if there's a jwt token in the response
+            if (result && result.map) {
+                // store user details and jwt token in local storage to keep user logged in between page refreshes
+                //   localStorage.setItem('currentUser', JSON.stringify(user));
+                //console.log(JSON.stringify(orders));
+                console.log('bagina ', result);
+                return result;
+            }
+            else {
+                if (result) {
+                    localStorage.setItem('message', "");
+                    return result;
+                    //console.log(localStorage.getItem("message"));
+                }
+                else {
+                    return null;
+                }
+            }
+        });
+    };
+    ImageService.prototype.getPage = function (filter, sortBy, sortOrder, pageNumber, pageSize) {
+        if (filter === void 0) { filter = ''; }
+        if (pageNumber === void 0) { pageNumber = 0; }
+        if (pageSize === void 0) { pageSize = 3; }
+        // let header=new HttpHeaders({'Content-Type': 'application/json', 'Authorization': 'Bearer '+ JSON.parse(localStorage.getItem('currentUser')).map.token});
+        return this.http.get(this.baseURL + '/estimates', {
+            params: new __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["e" /* HttpParams */]()
+                .set('filter', filter)
+                .set('sortBy', sortBy)
+                .set('sortOrder', sortOrder)
+                .set('pageNumber', pageNumber.toString())
+                .set('pageSize', pageSize.toString())
+        }) //, {headers: header}
+            .map(function (data) {
+            // login successful if there's a jwt token in the response
+            if (data && data.map) {
+                // store user details and jwt token in local storage to keep user logged in between page refreshes
+                // to check response object: console.log(JSON.stringify(orders));
+                return data;
+            }
+            else {
+                if (data) {
+                    localStorage.setItem('message', "");
+                    return data;
+                }
+                else {
+                    return null;
+                }
+            }
+        });
+    };
+    ImageService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["b" /* HttpClient */]])
+    ], ImageService);
+    return ImageService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/_services/index.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1588,25 +1708,28 @@ var EstimatesService = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__authentication_service__ = __webpack_require__("./src/app/_services/authentication.service.ts");
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__authentication_service__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__user_service__ = __webpack_require__("./src/app/_services/user.service.ts");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "l", function() { return __WEBPACK_IMPORTED_MODULE_2__user_service__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "m", function() { return __WEBPACK_IMPORTED_MODULE_2__user_service__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__orders_service__ = __webpack_require__("./src/app/_services/orders.service.ts");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_3__orders_service__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_3__orders_service__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__eproof_service__ = __webpack_require__("./src/app/_services/eproof.service.ts");
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_4__eproof_service__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__missing_artwork_service__ = __webpack_require__("./src/app/_services/missing-artwork.service.ts");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_5__missing_artwork_service__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_5__missing_artwork_service__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pay_bills_service__ = __webpack_require__("./src/app/_services/pay-bills.service.ts");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_6__pay_bills_service__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_6__pay_bills_service__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__estimates_service__ = __webpack_require__("./src/app/_services/estimates.service.ts");
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_7__estimates_service__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__stitch_approval_service__ = __webpack_require__("./src/app/_services/stitch-approval.service.ts");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "j", function() { return __WEBPACK_IMPORTED_MODULE_8__stitch_approval_service__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "k", function() { return __WEBPACK_IMPORTED_MODULE_8__stitch_approval_service__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pre_production_approval_service__ = __webpack_require__("./src/app/_services/pre-production-approval.service.ts");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_9__pre_production_approval_service__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "j", function() { return __WEBPACK_IMPORTED_MODULE_9__pre_production_approval_service__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ups_shipping_service__ = __webpack_require__("./src/app/_services/ups-shipping.service.ts");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "k", function() { return __WEBPACK_IMPORTED_MODULE_10__ups_shipping_service__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "l", function() { return __WEBPACK_IMPORTED_MODULE_10__ups_shipping_service__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__inventory_service__ = __webpack_require__("./src/app/_services/inventory.service.ts");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_11__inventory_service__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_11__inventory_service__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__image_service__ = __webpack_require__("./src/app/_services/image.service.ts");
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_12__image_service__["a"]; });
+
 
 
 
@@ -2597,30 +2720,85 @@ var EstimatesSource = (function () {
 
 /***/ }),
 
+/***/ "./src/app/_sources/image.source.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ImageSource; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs__ = __webpack_require__("./node_modules/rxjs/Rx.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_observable_of__ = __webpack_require__("./node_modules/rxjs/_esm5/observable/of.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_operators__ = __webpack_require__("./node_modules/rxjs/_esm5/operators/index.js");
+
+
+
+var ImageSource = (function () {
+    function ImageSource(service, alertService) {
+        this.service = service;
+        this.alertService = alertService;
+        this.lessonsSubject = new __WEBPACK_IMPORTED_MODULE_0_rxjs__["BehaviorSubject"]([]);
+        this.loadingSubject = new __WEBPACK_IMPORTED_MODULE_0_rxjs__["BehaviorSubject"](false);
+        this.loading$ = this.loadingSubject.asObservable();
+    }
+    ImageSource.prototype.getScreenSize = function () {
+        return window.innerWidth;
+    };
+    ImageSource.prototype.loadData = function (orderId) {
+        var _this = this;
+        this.loadingSubject.next(true);
+        //      this.ordersService.getOpenOrders(courseId, filter, sortDirection,
+        //          pageIndex, pageSize)
+        this.service.getResults(orderId)
+            .pipe(
+        //      catchError(() => of([])),
+        Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_operators__["a" /* catchError */])(function () { return Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_observable_of__["a" /* of */])(_this.alertService.error('Session Timed Out', true)); }), Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_operators__["d" /* finalize */])(function () { return _this.loadingSubject.next(false); }))
+            .subscribe(function (data) { _this.lessonsSubject.next(data), (data[0] == null ? _this.count = 0 : _this.count = data[0].total_rs); }, function (error) { console.log("Image Error"); });
+    };
+    ImageSource.prototype.timedOut = function () {
+        this.alertService.error('Session Timed Out', true);
+    };
+    ImageSource.prototype.connect = function (collectionViewer) {
+        console.log("Connecting data source");
+        return this.lessonsSubject.asObservable();
+    };
+    ImageSource.prototype.disconnect = function (collectionViewer) {
+        this.lessonsSubject.complete();
+        this.loadingSubject.complete();
+    };
+    return ImageSource;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/_sources/index.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__open_orders_source__ = __webpack_require__("./src/app/_sources/open-orders.source.ts");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_0__open_orders_source__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_0__open_orders_source__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__order_history_source__ = __webpack_require__("./src/app/_sources/order-history.source.ts");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_1__order_history_source__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_1__order_history_source__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__search_order_source__ = __webpack_require__("./src/app/_sources/search-order.source.ts");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_2__search_order_source__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "j", function() { return __WEBPACK_IMPORTED_MODULE_2__search_order_source__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__missing_artwork_source__ = __webpack_require__("./src/app/_sources/missing-artwork.source.ts");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_3__missing_artwork_source__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_3__missing_artwork_source__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__eproof_source__ = __webpack_require__("./src/app/_sources/eproof.source.ts");
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_4__eproof_source__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pay_bills_source__ = __webpack_require__("./src/app/_sources/pay-bills.source.ts");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_5__pay_bills_source__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_5__pay_bills_source__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__estimates_source__ = __webpack_require__("./src/app/_sources/estimates.source.ts");
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_6__estimates_source__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__stitch_approval_source__ = __webpack_require__("./src/app/_sources/stitch-approval.source.ts");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "j", function() { return __WEBPACK_IMPORTED_MODULE_7__stitch_approval_source__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "k", function() { return __WEBPACK_IMPORTED_MODULE_7__stitch_approval_source__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pre_production_approval_source__ = __webpack_require__("./src/app/_sources/pre-production-approval.source.ts");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_8__pre_production_approval_source__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_8__pre_production_approval_source__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__inventory_source__ = __webpack_require__("./src/app/_sources/inventory.source.ts");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_9__inventory_source__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_9__inventory_source__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__image_source__ = __webpack_require__("./src/app/_sources/image.source.ts");
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_10__image_source__["a"]; });
+
 
 
 
@@ -3376,16 +3554,17 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_12__guards_index__["a" /* AuthGuard */],
                 __WEBPACK_IMPORTED_MODULE_16__services_index__["a" /* AlertService */],
                 __WEBPACK_IMPORTED_MODULE_16__services_index__["b" /* AuthenticationService */],
-                __WEBPACK_IMPORTED_MODULE_16__services_index__["l" /* UserService */],
-                __WEBPACK_IMPORTED_MODULE_16__services_index__["g" /* OrdersService */],
+                __WEBPACK_IMPORTED_MODULE_16__services_index__["m" /* UserService */],
+                __WEBPACK_IMPORTED_MODULE_16__services_index__["h" /* OrdersService */],
                 __WEBPACK_IMPORTED_MODULE_16__services_index__["c" /* EproofService */],
-                __WEBPACK_IMPORTED_MODULE_16__services_index__["f" /* MissingArtworkService */],
-                __WEBPACK_IMPORTED_MODULE_16__services_index__["h" /* PayBillsService */],
+                __WEBPACK_IMPORTED_MODULE_16__services_index__["g" /* MissingArtworkService */],
+                __WEBPACK_IMPORTED_MODULE_16__services_index__["i" /* PayBillsService */],
                 __WEBPACK_IMPORTED_MODULE_16__services_index__["d" /* EstimatesService */],
-                __WEBPACK_IMPORTED_MODULE_16__services_index__["j" /* StitchApprovalService */],
-                __WEBPACK_IMPORTED_MODULE_16__services_index__["i" /* PreProductionApprovalService */],
-                __WEBPACK_IMPORTED_MODULE_16__services_index__["k" /* UpsShippingService */],
-                __WEBPACK_IMPORTED_MODULE_16__services_index__["e" /* InventoryService */],
+                __WEBPACK_IMPORTED_MODULE_16__services_index__["k" /* StitchApprovalService */],
+                __WEBPACK_IMPORTED_MODULE_16__services_index__["j" /* PreProductionApprovalService */],
+                __WEBPACK_IMPORTED_MODULE_16__services_index__["l" /* UpsShippingService */],
+                __WEBPACK_IMPORTED_MODULE_16__services_index__["f" /* InventoryService */],
+                __WEBPACK_IMPORTED_MODULE_16__services_index__["e" /* ImageService */],
                 {
                     provide: __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["a" /* HTTP_INTERCEPTORS */],
                     useClass: __WEBPACK_IMPORTED_MODULE_13__helpers_index__["b" /* JwtInterceptor */],
@@ -3474,7 +3653,7 @@ module.exports = ".card {\r\n\twidth: 300px;\r\n  max-width: 400px;\r\n}\r\n\r\n
 /***/ "./src/app/eproof/art-approval/art-approval.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"close-container\" class=\"fadeIn jumbotron\"\n\tstyle=\"margin-top: 15px; height: 83vh;\">\n\t<div style=\"margin-bottom: 15px;\">\n\t\t<button id=\"x\" (click)=\"closeThis()\" type=\"button\"\n\t\t\tclass=\"btn btn-default\">\n\t\t\t<i></i> <span>X</span>\n\t\t</button>\n\t</div>\n\t<ng-sidebar-container style=\"height: 78vh; width: 100%;\">\n\t<ng-sidebar [opened]=\"true\" [dock]=\"true\" [dockedSize]=\"'150px'\"\n\t\tstyle=\"\">\n\t<ul class=\"nav menu\">\n\t\t<li>Factory Order# :</li>\n\t\t<li>PO# :</li>\n\t\t<li>Product# :</li>\n\t\t<li>Product Color :</li>\n\t\t<li>Imprint Type :</li>\n\t\t<li>Imprint Color :</li>\n\t\t<li>Qty :</li>\n\t\t<li>email@email.com</li>\n\t\t<li>\n\t\t<li role=\"presentation\" class=\"divider\"></li>\n\t\t<li><button type=\"button\"\n\t\t\t\tstyle=\"margin-top: 0.5rem; margin-bottom: 0.5rem; min-width: 150px;\"\n\t\t\t\tclass=\"btn btn-primary\">\n\t\t\t\t<i class=\"fa far fa-comment\"></i> <span>Comment</span>\n\t\t\t</button></li>\n\t\t<li><button type=\"button\" (click)=\"openImageDialog()\"\n\t\t\t\tstyle=\"margin-top: 0.5rem; margin-bottom: 0.5rem; min-width: 150px;\"\n\t\t\t\tclass=\"btn btn-primary\">\n\t\t\t\t<i class=\"fa fas fa-search-plus\"></i> <span>Zoom In</span>\n\t\t\t</button></li>\n\t\t<li><button type=\"button\" (click)=\"openImageDialog()\"\n\t\t\t\tstyle=\"margin-top: 0.5rem; margin-bottom: 0.5rem; min-width: 150px;\"\n\t\t\t\tclass=\"btn btn-primary\">\n\t\t\t\t<i class=\"fa fas fa-search-minus\"></i> <span>Zoom Out</span>\n\t\t\t</button></li>\n\t\t<li><button type=\"button\"\n\t\t\t\tstyle=\"margin-top: 0.5rem; margin-bottom: 0.5rem; min-width: 150px;\"\n\t\t\t\tclass=\"btn btn-primary\">\n\t\t\t\t<i class=\"fa fas fa-expand\"></i> <span>Fit to Page</span>\n\t\t\t</button></li>\n\t\t<li><button type=\"button\" (click)=\"openPdf()\"\n\t\t\t\tstyle=\"margin-top: 0.5rem; margin-bottom: 0.5rem; min-width: 150px;\"\n\t\t\t\tclass=\"btn btn-primary\">\n\t\t\t\t<i class=\"fa fas fa-download\"></i> <span>Download Proof</span>\n\t\t\t</button></li>\n\n\n\t</ul>\n\t</ng-sidebar>\n\t<div ng-sidebar-content>\n\t\t<div style=\"margin-left: 50px; padding-left: 5px; padding-right: 5px;\">\n\t\t\t<div > \n\n\t\t\t<div class=\"row\">\n\t\t\t\t<div class=\"col-md-4\"  *ngFor=\"let dumb of dummy\">\n\t\t\t\t<mat-card class=\"card\"> <mat-card-header>\n\t\t\t\t<div mat-card-avatar class=\"card-header-image\"></div>\n\t\t\t\t<mat-card-title>Title</mat-card-title> <mat-card-subtitle>Version 1.0</mat-card-subtitle> </mat-card-header> <img mat-card-image> <mat-card-content>\n\t\t\t\t<p></p><img mat-card-image\n\t\t\t\t\tsrc=\"https://chentek.github.io/portal/assets/images/art_sample.png\"\n\t\t\t\t\talt=\"filename\"> \n\t\t\t\t</mat-card-content> <mat-card-actions>\n\t\t\t\t<button mat-button (click)=\"openPdf()\">Download</button>\n\t\t\t\t<button mat-button (click)=\"openImageDialog()\">Zoom</button>\n\t\t\t\t</mat-card-actions> \n\t\t\t\t</mat-card>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t\t</div>\n\t</div>\n\t</ng-sidebar-container>\n</div>\n<!-- \n\t<div class=\"row\" style=\"padding: 0px; margin:0px;\">\n\t<!-- side bar --\n\t\t<div class=\"col-md-2 small_note\">\n        <ul class=\"nav menu\">\n    <li>Factory Order# :</li>\n    <li>PO# : </li>\n\t<li>Product# :</li>\n\t<li>Product Color :</li>\n\t<li>Imprint Type :</li>\n\t<li>Imprint Color :</li>\n\t<li>Qty :</li>\n\t<li>email@email.com</li>\n    <li><li role=\"presentation\" class=\"divider\"></li>\n    <li><button type=\"button\"\n\t\t\t\t\tstyle=\"margin-top: 0.5rem; margin-bottom: 0.5rem; min-width: 150px;\"\n\t\t\t\t\tclass=\"btn btn-primary\">\n\t\t\t\t\t<i class=\"fa far fa-comment\"></i> <span>Comment</span>\n\t\t\t\t</button></li>\n    <li><button type=\"button\"\n\t\t\t\t\tstyle=\"margin-top: 0.5rem; margin-bottom: 0.5rem; min-width: 150px;\"\n\t\t\t\t\tclass=\"btn btn-primary\">\n\t\t\t\t\t<i class=\"fa fas fa-search-plus\"></i> <span>Zoom In</span>\n\t\t\t\t</button></li>\n    <li><button type=\"button\"\n\t\t\t\t\tstyle=\"margin-top: 0.5rem; margin-bottom: 0.5rem; min-width: 150px;\"\n\t\t\t\t\tclass=\"btn btn-primary\">\n\t\t\t\t\t<i class=\"fa fas fa-search-minus\"></i> <span>Zoom Out</span>\n\t\t\t\t</button></li>\n    <li><button type=\"button\"\n\t\t\t\t\tstyle=\"margin-top: 0.5rem; margin-bottom: 0.5rem; min-width: 150px;\"\n\t\t\t\t\tclass=\"btn btn-primary\">\n\t\t\t\t\t<i class=\"fa fas fa-expand\"></i> <span>Fit to Page</span>\n\t\t\t\t</button></li>\n    <li><button type=\"button\"\n\t\t\t\t\tstyle=\"margin-top: 0.5rem; margin-bottom: 0.5rem; min-width: 150px;\"\n\t\t\t\t\tclass=\"btn btn-primary\">\n\t\t\t\t\t<i class=\"fa fas fa-download\"></i> <span>Download Proof</span>\n\t\t\t\t</button></li>\n  </ul>\n\t</div>\n\t<!-- main --\n\t\t<div class=\"col-md-8\">Selected: {{selection[0].ext_ref_no}} </div>\n\t<!-- side bar --\n\t\t<div class=\"col-md-2 small_note\" style=\"background: #000\">Selected: {{selection[0].ext_ref_no}} </div>\n\t</div>\n</div> -->"
+module.exports = "<div id=\"close-container\" class=\"fadeIn jumbotron\"\n\tstyle=\"margin-top: 15px; height: 83vh;\">\n\t<div style=\"margin-bottom: 15px;\">\n\t\t<button id=\"x\" (click)=\"closeThis()\" type=\"button\"\n\t\t\tclass=\"btn btn-default\">\n\t\t\t<i></i> <span>X</span>\n\t\t</button>\n\t</div>\n\t<ng-sidebar-container style=\"height: 78vh; width: 100%;\">\n\t<ng-sidebar [opened]=\"true\" [dock]=\"true\" [dockedSize]=\"'150px'\"\n\t\tstyle=\"\">\n\t<ul class=\"nav menu\">\n\t\t<li>Factory Order# :</li>\n\t\t<li>PO# :</li>\n\t\t<li>Product# :</li>\n\t\t<li>Product Color :</li>\n\t\t<li>Imprint Type :</li>\n\t\t<li>Imprint Color :</li>\n\t\t<li>Qty :</li>\n\t\t<li>email@email.com</li>\n\t\t<li>\n\t\t<li role=\"presentation\" class=\"divider\"></li>\n\t\t<li><button type=\"button\"\n\t\t\t\tstyle=\"margin-top: 0.5rem; margin-bottom: 0.5rem; min-width: 150px;\"\n\t\t\t\tclass=\"btn btn-primary\">\n\t\t\t\t<i class=\"fa far fa-comment\"></i> <span>Comment</span>\n\t\t\t</button></li>\n\t\t<li><button type=\"button\" (click)=\"openImageDialog()\"\n\t\t\t\tstyle=\"margin-top: 0.5rem; margin-bottom: 0.5rem; min-width: 150px;\"\n\t\t\t\tclass=\"btn btn-primary\">\n\t\t\t\t<i class=\"fa fas fa-search-plus\"></i> <span>Zoom In</span>\n\t\t\t</button></li>\n\t\t<li><button type=\"button\" (click)=\"openImageDialog()\"\n\t\t\t\tstyle=\"margin-top: 0.5rem; margin-bottom: 0.5rem; min-width: 150px;\"\n\t\t\t\tclass=\"btn btn-primary\">\n\t\t\t\t<i class=\"fa fas fa-search-minus\"></i> <span>Zoom Out</span>\n\t\t\t</button></li>\n\t\t<li><button type=\"button\"\n\t\t\t\tstyle=\"margin-top: 0.5rem; margin-bottom: 0.5rem; min-width: 150px;\"\n\t\t\t\tclass=\"btn btn-primary\">\n\t\t\t\t<i class=\"fa fas fa-expand\"></i> <span>Fit to Page</span>\n\t\t\t</button></li>\n\t\t<li><button type=\"button\" (click)=\"openPdf()\"\n\t\t\t\tstyle=\"margin-top: 0.5rem; margin-bottom: 0.5rem; min-width: 150px;\"\n\t\t\t\tclass=\"btn btn-primary\">\n\t\t\t\t<i class=\"fa fas fa-download\"></i> <span>Download Proof</span>\n\t\t\t</button></li>\n\n\n\t</ul>\n\t</ng-sidebar>\n\t<div ng-sidebar-content>\n\t\t<div style=\"margin-left: 50px; padding-left: 5px; padding-right: 5px;\">\n\t\t\t<div > \n\n\t\t\t<div class=\"row\">\n\t\t\t\t<div class=\"col-md-4\"  *ngFor=\"let dumb of dummy\">\n\t\t\t\t<mat-card class=\"card\"> <mat-card-header>\n\t\t\t\t<div mat-card-avatar class=\"card-header-image\"></div>\n\t\t\t\t<mat-card-title>Title</mat-card-title> \n\t\t\t\t<mat-card-subtitle>Version 1.0</mat-card-subtitle> \n\t\t\t\t</mat-card-header> \n\t\t\t\t<img mat-card-image> \n\t\t\t\t<mat-card-content>\n\t\t\t\t\n\t\t\t\t  <div>\n      <label>PDF src</label>\n      <input type=\"text\" placeholder=\"PDF src\" [(ngModel)]=\"pdfSrc\">\n  </div>\n  <pdf-viewer [src]=\"pdfSrc\" \n              [render-text]=\"true\"\n              style=\"display: block;\"\n  ></pdf-viewer>\n\t\t\t\t\n\t\t\t\t<p></p>\n\t\t\t\t<img mat-card-image\n\t\t\t\t\tsrc=\"https://chentek.github.io/portal/assets/images/art_sample.png\"\n\t\t\t\t\talt=\"filename\"> \n\t\t\t\t</mat-card-content> \n\t\t\t\t<mat-card-actions>\n\t\t\t\t<button mat-button (click)=\"openPdf()\">Download</button>\n\t\t\t\t<button mat-button (click)=\"openImageDialog()\">Zoom</button>\n\t\t\t\t</mat-card-actions> \n\t\t\t\t</mat-card>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t\t</div>\n\t</div>\n\t</ng-sidebar-container>\n</div>\n<!-- \n\t<div class=\"row\" style=\"padding: 0px; margin:0px;\">\n\t<!-- side bar --\n\t\t<div class=\"col-md-2 small_note\">\n        <ul class=\"nav menu\">\n    <li>Factory Order# :</li>\n    <li>PO# : </li>\n\t<li>Product# :</li>\n\t<li>Product Color :</li>\n\t<li>Imprint Type :</li>\n\t<li>Imprint Color :</li>\n\t<li>Qty :</li>\n\t<li>email@email.com</li>\n    <li><li role=\"presentation\" class=\"divider\"></li>\n    <li><button type=\"button\"\n\t\t\t\t\tstyle=\"margin-top: 0.5rem; margin-bottom: 0.5rem; min-width: 150px;\"\n\t\t\t\t\tclass=\"btn btn-primary\">\n\t\t\t\t\t<i class=\"fa far fa-comment\"></i> <span>Comment</span>\n\t\t\t\t</button></li>\n    <li><button type=\"button\"\n\t\t\t\t\tstyle=\"margin-top: 0.5rem; margin-bottom: 0.5rem; min-width: 150px;\"\n\t\t\t\t\tclass=\"btn btn-primary\">\n\t\t\t\t\t<i class=\"fa fas fa-search-plus\"></i> <span>Zoom In</span>\n\t\t\t\t</button></li>\n    <li><button type=\"button\"\n\t\t\t\t\tstyle=\"margin-top: 0.5rem; margin-bottom: 0.5rem; min-width: 150px;\"\n\t\t\t\t\tclass=\"btn btn-primary\">\n\t\t\t\t\t<i class=\"fa fas fa-search-minus\"></i> <span>Zoom Out</span>\n\t\t\t\t</button></li>\n    <li><button type=\"button\"\n\t\t\t\t\tstyle=\"margin-top: 0.5rem; margin-bottom: 0.5rem; min-width: 150px;\"\n\t\t\t\t\tclass=\"btn btn-primary\">\n\t\t\t\t\t<i class=\"fa fas fa-expand\"></i> <span>Fit to Page</span>\n\t\t\t\t</button></li>\n    <li><button type=\"button\"\n\t\t\t\t\tstyle=\"margin-top: 0.5rem; margin-bottom: 0.5rem; min-width: 150px;\"\n\t\t\t\t\tclass=\"btn btn-primary\">\n\t\t\t\t\t<i class=\"fa fas fa-download\"></i> <span>Download Proof</span>\n\t\t\t\t</button></li>\n  </ul>\n\t</div>\n\t<!-- main --\n\t\t<div class=\"col-md-8\">Selected: {{selection[0].ext_ref_no}} </div>\n\t<!-- side bar --\n\t\t<div class=\"col-md-2 small_note\" style=\"background: #000\">Selected: {{selection[0].ext_ref_no}} </div>\n\t</div>\n</div> -->"
 
 /***/ }),
 
@@ -3484,8 +3663,11 @@ module.exports = "<div id=\"close-container\" class=\"fadeIn jumbotron\"\n\tstyl
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ArtApprovalComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dialogs_index__ = __webpack_require__("./src/app/_dialogs/index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_material__ = __webpack_require__("./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_index__ = __webpack_require__("./src/app/_services/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sources_index__ = __webpack_require__("./src/app/_sources/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_material__ = __webpack_require__("./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__("./node_modules/@angular/router/esm5/router.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3498,19 +3680,57 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
+
 var ArtApprovalComponent = (function () {
-    function ArtApprovalComponent(dialog) {
+    function ArtApprovalComponent(dialog, route, service, alertService) {
         this.dialog = dialog;
-        this.close = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["EventEmitter"]();
-        this.dummy = ['a'];
+        this.route = route;
+        this.service = service;
+        this.alertService = alertService;
+        this.close = new __WEBPACK_IMPORTED_MODULE_3__angular_core__["EventEmitter"]();
+        this.loading = true;
+        this.pdfSrc = 'https://tekweld.promo.tekweld.com//attachments/TEKW1122/537546-C/CB300-GREEN-v1.pdf';
+        this.dummy = ['a', 'b'];
     }
     ArtApprovalComponent.prototype.ngOnInit = function () {
+        this.obj = this.route.snapshot.data["data"];
+        this.dataSource = new __WEBPACK_IMPORTED_MODULE_2__sources_index__["c" /* ImageSource */](this.service, this.alertService);
+        this.dataSource.loadData(this.selection[0].trans_no);
+        this.getImage();
     };
     ArtApprovalComponent.prototype.closeThis = function () {
-        this.close.emit("close");
+        this.close.emit("close"); //COMTINUE VUILDUIN THIS
     };
-    ArtApprovalComponent.prototype.openPdf = function () {
-        this.openPdfDialog('../assets/images/proof_sample.pdf', '', 3);
+    ArtApprovalComponent.prototype.getImage = function () {
+        var _this = this;
+        this.loading = true;
+        this.service.getResults(this.selection[0].trans_no).subscribe(function (details) {
+            _this.loading = false;
+            if (details != null) {
+                details.forEach(function (item, index) {
+                    console.log(item); // 9, 2, 5
+                    console.log(index); // 0, 1, 2
+                });
+            }
+            if (details[0] != null && details[0].artwork_file_path !== '') {
+                //   var newWindow = window.open('www.google.com');
+                //  newWindow.location.href = this.customerPOurl.replace('public','');
+                _this.openPdfDialog(details[0].artwork_file_path, '', 1);
+                //  this.document.location.href = 'https://tekweld.promo.tekweld.com/' + this.customerPOurl.replace('public',''); //TODO: change to previous commented lines when deploying. adding attachment folder first.
+            }
+            else {
+                _this.openPdfDialog('', 'Product picture not available at the moment.', 1);
+            }
+            ;
+        }, function (error) {
+            _this.alertService.error('Session Timed Out', true);
+            _this.loading = false;
+        });
+    };
+    ArtApprovalComponent.prototype.openPdf = function (uri) {
+        this.openPdfDialog(uri, '', 3);
     };
     ArtApprovalComponent.prototype.openPdfDialog = function (url, msg, caller) {
         var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_0__dialogs_index__["b" /* PdfviewerComponent */], {
@@ -3533,20 +3753,20 @@ var ArtApprovalComponent = (function () {
         });
     };
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Input"])(),
+        Object(__WEBPACK_IMPORTED_MODULE_3__angular_core__["Input"])(),
         __metadata("design:type", Array)
     ], ArtApprovalComponent.prototype, "selection", void 0);
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Output"])(),
+        Object(__WEBPACK_IMPORTED_MODULE_3__angular_core__["Output"])(),
         __metadata("design:type", Object)
     ], ArtApprovalComponent.prototype, "close", void 0);
     ArtApprovalComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Component"])({
+        Object(__WEBPACK_IMPORTED_MODULE_3__angular_core__["Component"])({
             selector: 'app-art-approval',
             template: __webpack_require__("./src/app/eproof/art-approval/art-approval.component.html"),
             styles: [__webpack_require__("./src/app/eproof/art-approval/art-approval.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_material__["d" /* MatDialog */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4__angular_material__["d" /* MatDialog */], __WEBPACK_IMPORTED_MODULE_5__angular_router__["a" /* ActivatedRoute */], __WEBPACK_IMPORTED_MODULE_1__services_index__["e" /* ImageService */], __WEBPACK_IMPORTED_MODULE_1__services_index__["a" /* AlertService */]])
     ], ArtApprovalComponent);
     return ArtApprovalComponent;
 }());
@@ -3905,9 +4125,9 @@ var HomeComponent = (function () {
     HomeComponent.prototype.ngOnInit = function () {
         this.loadAllUsers();
         // this.order = this.route.snapshot.data["order"];
-        this.openOrderdataSource = new __WEBPACK_IMPORTED_MODULE_2__sources_index__["e" /* OpenOrdersSource */](this.ordersService, this.alertService);
+        this.openOrderdataSource = new __WEBPACK_IMPORTED_MODULE_2__sources_index__["f" /* OpenOrdersSource */](this.ordersService, this.alertService);
         this.openOrderdataSource.loadOrders('', 'trans_no', 'desc', 0, 5);
-        this.orderHistorySource = new __WEBPACK_IMPORTED_MODULE_2__sources_index__["f" /* OrderHistorySource */](this.ordersService, this.alertService);
+        this.orderHistorySource = new __WEBPACK_IMPORTED_MODULE_2__sources_index__["g" /* OrderHistorySource */](this.ordersService, this.alertService);
         this.orderHistorySource.loadOrders('', 'trans_no', 'desc', 0, 5);
     };
     HomeComponent.prototype.deleteUser = function (id) {
@@ -3941,7 +4161,7 @@ var HomeComponent = (function () {
             template: __webpack_require__("./src/app/home/home.component.html"),
             styles: [__webpack_require__("./src/app/home/home.component.css")],
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_index__["l" /* UserService */], __WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* ActivatedRoute */], __WEBPACK_IMPORTED_MODULE_1__services_index__["g" /* OrdersService */], __WEBPACK_IMPORTED_MODULE_1__services_index__["a" /* AlertService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_index__["m" /* UserService */], __WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* ActivatedRoute */], __WEBPACK_IMPORTED_MODULE_1__services_index__["h" /* OrdersService */], __WEBPACK_IMPORTED_MODULE_1__services_index__["a" /* AlertService */]])
     ], HomeComponent);
     return HomeComponent;
 }());
@@ -4006,7 +4226,7 @@ var InventoryWidgetComponent = (function () {
         this.displayedColumns = ["store_code", "on_hand_qty", "open_so_qty", "available_qty"];
     }
     InventoryWidgetComponent.prototype.ngOnInit = function () {
-        this.dataSource = new __WEBPACK_IMPORTED_MODULE_1__sources_index__["c" /* InventorySource */](this.service, this.alertService);
+        this.dataSource = new __WEBPACK_IMPORTED_MODULE_1__sources_index__["d" /* InventorySource */](this.service, this.alertService);
     };
     InventoryWidgetComponent.prototype.query = function () {
         this.dataSource.loadData(this.input.nativeElement.value);
@@ -4021,7 +4241,7 @@ var InventoryWidgetComponent = (function () {
             template: __webpack_require__("./src/app/inventory/inventory-widget/inventory-widget.component.html"),
             styles: [__webpack_require__("./src/app/inventory/inventory-widget/inventory-widget.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* ActivatedRoute */], __WEBPACK_IMPORTED_MODULE_0__services_index__["e" /* InventoryService */], __WEBPACK_IMPORTED_MODULE_0__services_index__["a" /* AlertService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* ActivatedRoute */], __WEBPACK_IMPORTED_MODULE_0__services_index__["f" /* InventoryService */], __WEBPACK_IMPORTED_MODULE_0__services_index__["a" /* AlertService */]])
     ], InventoryWidgetComponent);
     return InventoryWidgetComponent;
 }());
@@ -4253,7 +4473,7 @@ var MissingArtworkComponent = (function () {
     }
     MissingArtworkComponent.prototype.ngOnInit = function () {
         this.artwork = this.route.snapshot.data["data"];
-        this.dataSource = new __WEBPACK_IMPORTED_MODULE_4__sources_index__["d" /* MissingArtworkSource */](this.artworkService, this.alertService);
+        this.dataSource = new __WEBPACK_IMPORTED_MODULE_4__sources_index__["e" /* MissingArtworkSource */](this.artworkService, this.alertService);
         this.dataSource.loadOrders('', 'trans_no', 'asc', 0, 30);
     };
     MissingArtworkComponent.prototype.ngAfterViewInit = function () {
@@ -4323,7 +4543,7 @@ var MissingArtworkComponent = (function () {
             template: __webpack_require__("./src/app/missing-artwork/missing-artwork.component.html"),
             styles: [__webpack_require__("./src/app/missing-artwork/missing-artwork.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */], __WEBPACK_IMPORTED_MODULE_2__services_index__["f" /* MissingArtworkService */], __WEBPACK_IMPORTED_MODULE_2__services_index__["a" /* AlertService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */], __WEBPACK_IMPORTED_MODULE_2__services_index__["g" /* MissingArtworkService */], __WEBPACK_IMPORTED_MODULE_2__services_index__["a" /* AlertService */]])
     ], MissingArtworkComponent);
     return MissingArtworkComponent;
 }());
@@ -4482,7 +4702,7 @@ var OpenOrdersComponent = (function () {
     }
     OpenOrdersComponent.prototype.ngOnInit = function () {
         this.order = this.route.snapshot.data["order"];
-        this.dataSource = new __WEBPACK_IMPORTED_MODULE_6__sources_index__["e" /* OpenOrdersSource */](this.ordersService, this.alertService);
+        this.dataSource = new __WEBPACK_IMPORTED_MODULE_6__sources_index__["f" /* OpenOrdersSource */](this.ordersService, this.alertService);
         this.dataSource.loadOrders('', 'trans_no', 'asc', 0, 30);
     };
     OpenOrdersComponent.prototype.ngAfterViewInit = function () {
@@ -4558,12 +4778,12 @@ var OpenOrdersComponent = (function () {
             moduleId: module.i.toString(),
             template: __webpack_require__("./src/app/orders/open-orders/open-orders.component.html"),
             providers: [
-                __WEBPACK_IMPORTED_MODULE_2__services_index__["g" /* OrdersService */],
+                __WEBPACK_IMPORTED_MODULE_2__services_index__["h" /* OrdersService */],
                 __WEBPACK_IMPORTED_MODULE_2__services_index__["a" /* AlertService */]
             ],
             styles: [__webpack_require__("./src/app/orders/open-orders/open-orders.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */], __WEBPACK_IMPORTED_MODULE_2__services_index__["g" /* OrdersService */], __WEBPACK_IMPORTED_MODULE_2__services_index__["a" /* AlertService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */], __WEBPACK_IMPORTED_MODULE_2__services_index__["h" /* OrdersService */], __WEBPACK_IMPORTED_MODULE_2__services_index__["a" /* AlertService */]])
     ], OpenOrdersComponent);
     return OpenOrdersComponent;
 }());
@@ -4744,7 +4964,7 @@ var OrderDetailsComponent = (function () {
             styles: [__webpack_require__("./src/app/orders/order-details/order-details.component.css")]
         }),
         __param(3, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Inject"])(__WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__["b" /* DOCUMENT */])),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_index__["g" /* OrdersService */], __WEBPACK_IMPORTED_MODULE_1__services_index__["a" /* AlertService */], __WEBPACK_IMPORTED_MODULE_3__angular_material__["d" /* MatDialog */], Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_index__["h" /* OrdersService */], __WEBPACK_IMPORTED_MODULE_1__services_index__["a" /* AlertService */], __WEBPACK_IMPORTED_MODULE_3__angular_material__["d" /* MatDialog */], Object])
     ], OrderDetailsComponent);
     return OrderDetailsComponent;
 }());
@@ -4814,7 +5034,7 @@ var OrderHistoryComponent = (function () {
     }
     OrderHistoryComponent.prototype.ngOnInit = function () {
         this.order = this.route.snapshot.data["order"];
-        this.dataSource = new __WEBPACK_IMPORTED_MODULE_3__sources_index__["f" /* OrderHistorySource */](this.ordersService, this.alertService);
+        this.dataSource = new __WEBPACK_IMPORTED_MODULE_3__sources_index__["g" /* OrderHistorySource */](this.ordersService, this.alertService);
         this.dataSource.loadOrders('', 'trans_no', 'asc', 0, 30);
     };
     OrderHistoryComponent.prototype.ngAfterViewInit = function () {
@@ -4890,11 +5110,11 @@ var OrderHistoryComponent = (function () {
             template: __webpack_require__("./src/app/orders/order-history/order-history.component.html"),
             styles: [__webpack_require__("./src/app/orders/order-history/order-history.component.css")],
             providers: [
-                __WEBPACK_IMPORTED_MODULE_2__services_index__["g" /* OrdersService */],
+                __WEBPACK_IMPORTED_MODULE_2__services_index__["h" /* OrdersService */],
                 __WEBPACK_IMPORTED_MODULE_2__services_index__["a" /* AlertService */]
             ],
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */], __WEBPACK_IMPORTED_MODULE_2__services_index__["g" /* OrdersService */], __WEBPACK_IMPORTED_MODULE_2__services_index__["a" /* AlertService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */], __WEBPACK_IMPORTED_MODULE_2__services_index__["h" /* OrdersService */], __WEBPACK_IMPORTED_MODULE_2__services_index__["a" /* AlertService */]])
     ], OrderHistoryComponent);
     return OrderHistoryComponent;
 }());
@@ -4972,7 +5192,7 @@ var SearchOrderComponent = (function () {
     }
     SearchOrderComponent.prototype.ngOnInit = function () {
         this.order = this.route.snapshot.data["order"];
-        this.dataSource = new __WEBPACK_IMPORTED_MODULE_3__sources_index__["i" /* SearchOrderSource */](this.ordersService, this.alertService);
+        this.dataSource = new __WEBPACK_IMPORTED_MODULE_3__sources_index__["j" /* SearchOrderSource */](this.ordersService, this.alertService);
         //   this.dataSource.loadOrders('','trans_no', 'asc', 0, 50);
     };
     SearchOrderComponent.prototype.ngAfterViewInit = function () {
@@ -5044,7 +5264,7 @@ var SearchOrderComponent = (function () {
             template: __webpack_require__("./src/app/orders/search-order/search-order.component.html"),
             styles: [__webpack_require__("./src/app/orders/search-order/search-order.component.css")],
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */], __WEBPACK_IMPORTED_MODULE_2__services_index__["g" /* OrdersService */], __WEBPACK_IMPORTED_MODULE_2__services_index__["a" /* AlertService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */], __WEBPACK_IMPORTED_MODULE_2__services_index__["h" /* OrdersService */], __WEBPACK_IMPORTED_MODULE_2__services_index__["a" /* AlertService */]])
     ], SearchOrderComponent);
     return SearchOrderComponent;
 }());
@@ -5113,7 +5333,7 @@ var PayBillsComponent = (function () {
     }
     PayBillsComponent.prototype.ngOnInit = function () {
         this.obj = this.route.snapshot.data["data"];
-        this.dataSource = new __WEBPACK_IMPORTED_MODULE_1__sources_index__["g" /* PayBillsSource */](this.service, this.alertService);
+        this.dataSource = new __WEBPACK_IMPORTED_MODULE_1__sources_index__["h" /* PayBillsSource */](this.service, this.alertService);
         this.dataSource.loadAllData();
         //this.dataSource.loadData('','trans_no', 'asc', 0, 1000);
     };
@@ -5201,7 +5421,7 @@ var PayBillsComponent = (function () {
             template: __webpack_require__("./src/app/pay-bills/pay-bills.component.html"),
             styles: [__webpack_require__("./src/app/pay-bills/pay-bills.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5__angular_router__["a" /* ActivatedRoute */], __WEBPACK_IMPORTED_MODULE_0__services_index__["h" /* PayBillsService */], __WEBPACK_IMPORTED_MODULE_0__services_index__["a" /* AlertService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5__angular_router__["a" /* ActivatedRoute */], __WEBPACK_IMPORTED_MODULE_0__services_index__["i" /* PayBillsService */], __WEBPACK_IMPORTED_MODULE_0__services_index__["a" /* AlertService */]])
     ], PayBillsComponent);
     return PayBillsComponent;
 }());
@@ -5271,7 +5491,7 @@ var PreProductionApprovalComponent = (function () {
     }
     PreProductionApprovalComponent.prototype.ngOnInit = function () {
         this.obj = this.route.snapshot.data["data"];
-        this.dataSource = new __WEBPACK_IMPORTED_MODULE_1__sources_index__["h" /* PreProductionApprovalSource */](this.service, this.alertService);
+        this.dataSource = new __WEBPACK_IMPORTED_MODULE_1__sources_index__["i" /* PreProductionApprovalSource */](this.service, this.alertService);
         this.dataSource.loadData('', 'trans_no', 'asc', 0, 30);
     };
     PreProductionApprovalComponent.prototype.ngAfterViewInit = function () {
@@ -5341,7 +5561,7 @@ var PreProductionApprovalComponent = (function () {
             template: __webpack_require__("./src/app/pre-production-approval/pre-production-approval.component.html"),
             styles: [__webpack_require__("./src/app/pre-production-approval/pre-production-approval.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* ActivatedRoute */], __WEBPACK_IMPORTED_MODULE_0__services_index__["i" /* PreProductionApprovalService */], __WEBPACK_IMPORTED_MODULE_0__services_index__["a" /* AlertService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* ActivatedRoute */], __WEBPACK_IMPORTED_MODULE_0__services_index__["j" /* PreProductionApprovalService */], __WEBPACK_IMPORTED_MODULE_0__services_index__["a" /* AlertService */]])
     ], PreProductionApprovalComponent);
     return PreProductionApprovalComponent;
 }());
@@ -5414,7 +5634,7 @@ var RegisterComponent = (function () {
             template: __webpack_require__("./src/app/register/register.component.html")
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */],
-            __WEBPACK_IMPORTED_MODULE_2__services_index__["l" /* UserService */],
+            __WEBPACK_IMPORTED_MODULE_2__services_index__["m" /* UserService */],
             __WEBPACK_IMPORTED_MODULE_2__services_index__["a" /* AlertService */]])
     ], RegisterComponent);
     return RegisterComponent;
@@ -5540,7 +5760,7 @@ var ShipEstimateWidgetComponent = (function () {
             template: __webpack_require__("./src/app/ship-estimate/ship-estimate-widget/ship-estimate-widget.component.html"),
             styles: [__webpack_require__("./src/app/ship-estimate/ship-estimate-widget/ship-estimate-widget.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_6__angular_common_http__["b" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_5_ngx_soap__["b" /* SOAPService */], __WEBPACK_IMPORTED_MODULE_2__services_index__["k" /* UpsShippingService */], __WEBPACK_IMPORTED_MODULE_2__services_index__["a" /* AlertService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_6__angular_common_http__["b" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_5_ngx_soap__["b" /* SOAPService */], __WEBPACK_IMPORTED_MODULE_2__services_index__["l" /* UpsShippingService */], __WEBPACK_IMPORTED_MODULE_2__services_index__["a" /* AlertService */]])
     ], ShipEstimateWidgetComponent);
     return ShipEstimateWidgetComponent;
 }());
@@ -5663,7 +5883,7 @@ var StitchApprovalComponent = (function () {
     }
     StitchApprovalComponent.prototype.ngOnInit = function () {
         this.obj = this.route.snapshot.data["data"];
-        this.dataSource = new __WEBPACK_IMPORTED_MODULE_1__sources_index__["j" /* StitchApprovalSource */](this.service, this.alertService);
+        this.dataSource = new __WEBPACK_IMPORTED_MODULE_1__sources_index__["k" /* StitchApprovalSource */](this.service, this.alertService);
         this.dataSource.loadData('', 'trans_no', 'asc', 0, 30);
     };
     StitchApprovalComponent.prototype.ngAfterViewInit = function () {
@@ -5733,7 +5953,7 @@ var StitchApprovalComponent = (function () {
             template: __webpack_require__("./src/app/stitch-approval/stitch-approval.component.html"),
             styles: [__webpack_require__("./src/app/stitch-approval/stitch-approval.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* ActivatedRoute */], __WEBPACK_IMPORTED_MODULE_0__services_index__["j" /* StitchApprovalService */], __WEBPACK_IMPORTED_MODULE_0__services_index__["a" /* AlertService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* ActivatedRoute */], __WEBPACK_IMPORTED_MODULE_0__services_index__["k" /* StitchApprovalService */], __WEBPACK_IMPORTED_MODULE_0__services_index__["a" /* AlertService */]])
     ], StitchApprovalComponent);
     return StitchApprovalComponent;
 }());
